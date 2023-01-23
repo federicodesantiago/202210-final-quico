@@ -2,11 +2,14 @@ import React from 'react';
 import './App.css';
 import { login, loginWithPass, logout } from '../../login';
 import { Header } from '../Header/header';
+import { Layout } from '../layout/layout';
 
 function App() {
     return (
         <>
             <Header></Header>
+            <Layout></Layout>
+
             {/* <div className="App">
                 <button type="button" onClick={login}>
                     Login

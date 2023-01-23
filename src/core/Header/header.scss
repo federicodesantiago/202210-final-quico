@@ -1,3 +1,5 @@
+@import '../../scss/variables.scss';
+
 * {
     margin: 0%;
     padding: 0%;
@@ -21,7 +23,7 @@ header {
         .header_text {
             font-size: 1.5em;
             color: white;
-            font-family: Timmana, Arial, Helvetica, sans-serif;
+            font-family: $secondary-font;
         }
     }
     // .burguer_menu {
@@ -53,44 +55,23 @@ header {
     //     }
     // }
     nav {
-        .menu_list {
-            position: absolute;
-            width: 300px;
-            margin: -100px 0 0 -50px;
-            padding: 50px;
-            padding-top: 125px;
-            background: #ededed;
-            list-style-type: none;
-            transform-origin: 0% 0%;
-            transform: translate(-100%, 0);
-            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-        }
         .menu_toggle {
-            display: block;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            position: absolute;
             top: 1.88%;
             right: 3.33%;
-            z-index: 1;
+            z-index: 2;
             -webkit-user-select: none;
             user-select: none;
-            a {
-                text-decoration: none;
-                color: #232323;
-                transition: color 0.3s ease;
-            }
-            a:hover {
-                color: tomato;
-            }
             input {
-                display: block;
-                width: 40px;
-                height: 32px;
                 position: absolute;
-                top: -7px;
-                left: -5px;
+                top: 20%;
+                right: 25%;
                 cursor: pointer;
-                opacity: 0; /* hide this */
-                z-index: 2; /* and place it over the hamburger */
+                opacity: 0;
+                z-index: 3;
                 -webkit-touch-callout: none;
             }
             span {
@@ -99,14 +80,10 @@ header {
                 height: 4px;
                 margin-bottom: 5px;
                 position: relative;
-
-                background: #cdcdcd;
+                background: $light-color;
                 border-radius: 3px;
-
-                z-index: 1;
-
+                z-index: 2;
                 transform-origin: 4px 0px;
-
                 transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
                     background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
                     opacity 0.55s ease;
@@ -119,34 +96,63 @@ header {
             }
             input:checked ~ span {
                 opacity: 1;
-                transform: rotate(45deg) translate(-2px, -1px);
-                background: #232323;
+                transform: rotate(45deg) translate(-0px, 0px);
+                background: white;
             }
             input:checked ~ span:nth-last-child(3) {
                 opacity: 0;
                 transform: rotate(0deg) scale(0.2, 0.2);
             }
             input:checked ~ span:nth-last-child(2) {
-                transform: rotate(-45deg) translate(0, -1px);
+                transform: rotate(-45deg) translate(-0px, 2px);
             }
-            ul {
-                position: absolute;
-                width: 300px;
-                margin: -100px 0 0 -50px;
-                padding: 50px;
-                padding-top: 125px;
-                background: #ededed;
-                list-style-type: none;
-                transform-origin: 0% 0%;
-                transform: translate(-100%, 0);
-                transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-                li {
-                    padding: 10px 0;
-                    font-size: 22px;
-                }
-            }
+
             input:checked ~ ul {
                 transform: none;
+            }
+        }
+        .menu_list {
+            position: absolute;
+            width: 18.75em;
+            height: 47.5em;
+            background: $light-color;
+            margin: 0em 3em;
+            list-style-type: none;
+            transform-origin: 0% 0%;
+            transform: translate(-120%, 0%);
+            transition: transform 1s cubic-bezier(0.77, 0.2, 0.05, 1);
+            border: 5px solid #dadada;
+            li {
+                font-family: $primary-font;
+                font-weight: 500;
+                padding: 0.5em 1em;
+                font-size: 24px;
+            }
+            .menu_list-login {
+                font-weight: 700;
+                font-size: 28px;
+            }
+
+            .menu_list-logout {
+                position: absolute;
+                top: 44em;
+            }
+
+            .menu_list-logoutLine {
+                width: 231px;
+                height: 0px;
+                margin: 0;
+                position: absolute;
+                left: 10%;
+                border: 2px solid $grey-color;
+            }
+            a {
+                text-decoration: none;
+                color: #232323;
+                transition: color 0.3s ease;
+            }
+            a:hover {
+                color: $dark-color;
             }
         }
     }

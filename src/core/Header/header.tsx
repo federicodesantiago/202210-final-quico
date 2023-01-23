@@ -24,13 +24,19 @@ export function Header() {
                                 <li>Home</li>
                             </a>
                             <a href=" ">
-                                <li>About</li>
+                                <li>Favoritos</li>
                             </a>
                             <a href=" ">
-                                <li>Info</li>
+                                <li>Buscar</li>
                             </a>
                             <a href=" ">
-                                <li>Contact</li>
+                                <li className="menu_list-login">Log In</li>
+                            </a>
+                            <a href=" " className="menu_list-logout">
+                                <span className="menu_list-logoutLine"></span>
+                                <li className="menu_list-logoutText">
+                                    Log Out
+                                </li>
                             </a>
                         </ul>
                     </div>
