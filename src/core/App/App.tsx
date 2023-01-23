@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { login, loginWithPass, logout } from '../../login';
+// import { login, loginWithPass, logout } from '../../login';
 import { Header } from '../Header/header';
 import { Layout } from '../layout/layout';
 

@@ -10,7 +10,7 @@ export function Header() {
                             src="./assets/header/LOGO.webp"
                             alt="Stop&Go Logo"
                         />
-                        <p className="header_text">Stop&Go</p>
+                        <h1 className="header_text">Stop&Go</h1>
                     </div>
                 </div>
                 <nav role="navigation">
