@@ -1,0 +1,25 @@
+@import '../../scss/variables.scss';
+
+.weather {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $light-blue;
+    width: 20em;
+    margin: auto;
+    margin-block-start: 1em;
+    border-radius: 0.62em;
+    border: 1px solid $light-color;
+    p {
+        font-size: 1.25em;
+        font-family: $primary-font;
+        font-weight: 500;
+        padding: 0.25em;
+    }
+    img {
+        width: 2.56em;
+    }
+    .temperature {
+        font-size: 0.93em;
+    }
+}

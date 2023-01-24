@@ -27,35 +27,11 @@ header {
             font-weight: 400;
         }
     }
-    // .burguer_menu {
-    //     display: flex;
-    //     flex-direction: column;
-    //     z-index: 2;
-    //     top: 1.88%;
-    //     right: 3.33%;
-    //     position: absolute;
-
-    //     .burguer_menu-bar {
-    //         width: 25px;
-    //         height: 4px;
-    //         margin: 0.1em;
-    //         background: rgb(255, 255, 255);
-    //         transition: all 0.25s ease;
-    //         transform-origin: 0px 100%;
-    //     }
-    //     input {
-    //         display: block;
-    //         width: 40px;
-    //         height: 32px;
-    //         position: absolute;
-    //         top: -7px;
-    //         left: -5px;
-    //         cursor: pointer;
-    //         opacity: 0; /* hide this */
-    //         z-index: 3;
-    //     }
-    // }
     nav {
+        &.open {
+            overflow: auto;
+            transform: translateX(0rem);
+        }
         .menu_toggle {
             display: flex;
             flex-direction: column;
@@ -155,6 +131,18 @@ header {
             a:hover {
                 color: $dark-color;
             }
+        }
+        nav.open .nav-toggle {
+            color: #fff;
+            opacity: 0.5;
+        }
+
+        .back {
+            overflow: hidden;
+        }
+
+        .blur {
+            filter: blur(2px);
         }
     }
 }

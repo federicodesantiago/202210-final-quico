@@ -1,0 +1,19 @@
+@import '../../scss/variables.scss';
+
+.buttons_Group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    button {
+        margin: 1em;
+        padding: 0.25em;
+        width: 11.5em;
+        height: 1.87em;
+        font-family: $primary-font;
+        font-size: 0.81em;
+        border: 1px solid $light-color;
+        border-radius: 0.62em;
+        background-color: $grey-color;
+    }
+}
