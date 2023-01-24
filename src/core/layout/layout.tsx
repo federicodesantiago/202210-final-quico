@@ -1,9 +1,22 @@
-import { HomePage } from '../../pages/home/homepage.page';
+import { MenuItems } from '../../types/menu';
+import { Footer } from '../Footer/footer';
+import { Header } from '../Header/header';
+import { Menu } from '../menu/menu';
 
-export function Layout() {
+export function Layout({
+    items,
+    children,
+}: {
+    items: MenuItems;
+    children: JSX.Element;
+}) {
     return (
         <>
-            <HomePage></HomePage>
+            <Header>
+                <Menu items={items}></Menu>
+            </Header>
+            <main>{children}</main>
+            <Footer></Footer>
         </>
     );
 }
