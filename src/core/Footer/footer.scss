@@ -1,0 +1,35 @@
+@import '../../scss/variables.scss';
+
+footer {
+    position: absolute;
+    top: 63em;
+    left: 2.56em;
+    font-size: 0.62em;
+    font-family: $primary-font;
+    color: $dark-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+        border: 1px solid $grey-color;
+        width: 80%;
+        margin-block-end: 0.5em;
+    }
+    .menu_list {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style-type: none;
+        gap: 13em;
+        margin-block-end: 0.3em;
+    }
+    a {
+        text-decoration: none;
+        color: $dark-color;
+        transition: color 0.3s ease;
+    }
+    p {
+        font-size: 0.9em;
+    }
+}

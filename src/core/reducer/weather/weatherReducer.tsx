@@ -1,4 +1,4 @@
-import { WeatherStructure } from '../../types/weather';
+import { WeatherStructure } from '../../../types/weather';
 import { weatherActionTypes } from './action.type';
 import { WeatherAction } from './actionCreators';
 
@@ -18,7 +18,8 @@ export function weatherReducer(
 ): WeatherStructure {
     switch (action.type) {
         case weatherActionTypes.load:
-            return action.payload as WeatherStructure;
+            const loadedWeather = action.payload as WeatherStructure;
+            return loadedWeather;
         default:
             return state;
     }

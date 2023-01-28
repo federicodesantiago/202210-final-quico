@@ -1,0 +1,161 @@
+@import '../../scss/variables.scss';
+@import '../../scss/mixin.scss';
+
+.buttons_group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    button {
+        margin: 1em;
+        padding: 0.25em;
+        width: 11.5em;
+        height: 1.87em;
+        font-family: $primary-font;
+        font-size: 0.81em;
+        border: 1px solid $light-color;
+        border-radius: 0.62em;
+        background-color: $grey-color;
+    }
+    .black-bg {
+        width: 100vh;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 50%);
+        position: absolute;
+        z-index: 4;
+    }
+
+    @keyframes search_content-fadein {
+        0% {
+            position: absolute;
+            top: 5%;
+            opacity: 0;
+        }
+
+        100% {
+            position: absolute;
+            top: 24%;
+            opacity: 1;
+        }
+    }
+    .search_content {
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        width: 19em;
+        height: 16em;
+        background-color: white;
+        border: 5px solid $grey-color;
+        border-radius: 0.62em;
+        animation: search_content-fadein 0.5s;
+        .search_content_header {
+            font-size: 1.75em;
+            font-family: $primary-font;
+            font-weight: 700;
+            margin: 0.2em;
+        }
+        span {
+            border: 1px solid black;
+            width: 16.87em;
+        }
+        .search_content-dropDown {
+            @include dropDownMenu();
+        }
+        .search_content-checker {
+            display: flex;
+            align-items: center;
+            gap: 3em;
+            .checker-item {
+                display: flex;
+                flex-direction: flex;
+                align-items: center;
+                margin-block-end: 0.75em;
+                label {
+                    margin-inline-start: 0.55em;
+                    font-family: $primary-font;
+                    font-size: 1.2em;
+                    font-weight: 500;
+                }
+                input {
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+        }
+        button {
+            width: 16.87em;
+            height: 2.31em;
+        }
+    }
+    @keyframes add_content-fadein {
+        0% {
+            position: absolute;
+            top: 5%;
+            opacity: 0;
+        }
+
+        100% {
+            position: absolute;
+            top: 24%;
+            opacity: 1;
+        }
+    }
+    .add-content {
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        width: 19em;
+        height: 22em;
+        background-color: white;
+        border: 5px solid $grey-color;
+        border-radius: 0.62em;
+        animation: add_content-fadein 0.5s;
+        .add_content_header {
+            font-size: 1.75em;
+            font-family: $primary-font;
+            font-weight: 700;
+            margin: 0.2em;
+        }
+        span {
+            border: 1px solid black;
+            width: 16.87em;
+            margin-block-end: 1em;
+        }
+        .add_content-dropDown {
+            @include dropDownMenu();
+        }
+        .add_content-checker {
+            @include checker();
+            gap: 0.75em;
+            margin-inline-start: 1em;
+            margin-block-start: 1em;
+            .checker-item {
+                label {
+                    font-size: 0.75em;
+                }
+            }
+        }
+        .add-content_input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            input {
+                width: 16.87em;
+                height: 1.62em;
+                border: 3px solid $grey-color;
+                border-radius: 0.62em;
+            }
+            input::placeholder {
+                padding-inline-start: 0.5em;
+            }
+        }
+        button {
+            width: 16.87em;
+            height: 2.31em;
+        }
+    }
+}

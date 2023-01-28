@@ -1,6 +1,6 @@
 export class GetWeather {
     constructor(
-        private url = 'http://api.openweathermap.org/data/2.5/weather?q=Corcubion,es&units=metric&APPID=aef84d8469219aa65d4be40902afd3ed/'
+        public url = 'http://api.openweathermap.org/data/2.5/weather?q=Madrid,es&units=metric&APPID=aef84d8469219aa65d4be40902afd3ed/'
     ) {}
 
     async loadWeather(url = this.url) {

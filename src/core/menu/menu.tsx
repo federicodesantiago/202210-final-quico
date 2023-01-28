@@ -15,6 +15,11 @@ export function Menu({ items }: { items: MenuItems }) {
                             <Link to={item.path}>{item.label}</Link>
                         </li>
                     ))}
+                    <div className="menu-list_login">
+                        <a href=" " className="menu_list-login">
+                            <li className="menu_list-loginText">Log In</li>
+                        </a>
+                    </div>
                     <a href=" " className="menu_list-logout">
                         <span className="menu_list-logoutLine"></span>
                         <li className="menu_list-logoutText">Log Out</li>

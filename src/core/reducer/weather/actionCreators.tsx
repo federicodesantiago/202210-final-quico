@@ -1,4 +1,4 @@
-import { WeatherStructure } from '../../types/weather';
+import { WeatherStructure } from '../../../types/weather';
 import { weatherActionTypes } from './action.type';
 
 export type WeatherAction = {

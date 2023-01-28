@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { UseWeather } from '../hooks/weather.hook';
+import { UseWeather } from '../../hooks/weather.hook';
 import { WeatherContext } from './weather.context';
 
 export function WeatherContextProvider({
