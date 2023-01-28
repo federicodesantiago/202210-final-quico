@@ -1,4 +1,5 @@
 export interface Repository<T> {
-    load: () => Promise<T[]>;
+    url: string;
+    load: () => Promise<T>;
     create: (payload: Partial<T>) => Promise<T>;
 }

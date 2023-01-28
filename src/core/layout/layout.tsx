@@ -2,6 +2,7 @@ import { MenuItems } from '../../types/menu';
 import { Footer } from '../Footer/footer';
 import { Header } from '../Header/header';
 import { Menu } from '../menu/menu';
+import { MenuFooter } from '../menu/menu.footer';
 
 export function Layout({
     items,
@@ -15,8 +16,10 @@ export function Layout({
             <Header>
                 <Menu items={items}></Menu>
             </Header>
-            <main>{children}</main>
-            <Footer></Footer>
+            <main className="main">{children}</main>
+            <Footer>
+                <MenuFooter items={items}></MenuFooter>
+            </Footer>
         </>
     );
 }
