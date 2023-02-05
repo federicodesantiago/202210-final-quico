@@ -6,7 +6,7 @@ export type PlaceAction = {
     payload:
         | Array<PlaceStructure>
         | PlaceStructure
-        | PlaceStructure['name']
+        | PlaceStructure['id']
         | boolean;
 };
 
@@ -28,7 +28,7 @@ export const placeUpdateCreator = (payload: PlaceStructure): PlaceAction => ({
 });
 
 export const placeDeleteCreator = (
-    payload: PlaceStructure['name']
+    payload: PlaceStructure['id']
 ): PlaceAction => ({
     type: placeActionTypes.delete,
     payload,

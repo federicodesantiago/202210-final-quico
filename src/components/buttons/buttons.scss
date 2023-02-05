@@ -17,6 +17,9 @@
         border-radius: 0.62em;
         background-color: $grey-color;
     }
+    #BigSearchButton {
+        width: 25em;
+    }
     .black-bg {
         width: 100vh;
         height: 100vh;
@@ -87,6 +90,11 @@
         button {
             width: 16.87em;
             height: 2.31em;
+            a {
+                color: black;
+                font-family: $primary-font;
+                text-decoration: none;
+            }
         }
     }
     @keyframes add_content-fadein {

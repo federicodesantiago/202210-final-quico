@@ -1,7 +1,21 @@
 import { Link } from 'react-router-dom';
 import { MenuItems } from '../../types/menu';
+import { SyntheticEvent, useContext } from 'react';
+import { UserContext } from '../context/place/place.context';
 
 export function Menu({ items }: { items: MenuItems }) {
+    const { handleLogIn, handleLogOut } = useContext(UserContext);
+
+    const handleIn = (ev: SyntheticEvent) => {
+        ev.preventDefault();
+        handleLogIn();
+    };
+
+    const handleOut = (ev: SyntheticEvent) => {
+        ev.preventDefault();
+        handleLogOut();
+    };
+
     return (
         <nav role="navigation">
             <div className="menu_toggle">
@@ -17,12 +31,22 @@ export function Menu({ items }: { items: MenuItems }) {
                     ))}
                     <div className="menu-list_login">
                         <a href=" " className="menu_list-login">
-                            <li className="menu_list-loginText">Log In</li>
+                            <li
+                                className="menu_list-loginText"
+                                onClick={handleIn}
+                            >
+                                Log In
+                            </li>
                         </a>
                     </div>
                     <a href=" " className="menu_list-logout">
                         <span className="menu_list-logoutLine"></span>
-                        <li className="menu_list-logoutText">Log Out</li>
+                        <li
+                            className="menu_list-logoutText"
+                            onClick={handleOut}
+                        >
+                            Log Out
+                        </li>
                     </a>
                 </ul>
             </div>

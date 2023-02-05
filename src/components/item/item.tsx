@@ -1,24 +1,26 @@
 import { useContext, useState } from 'react';
 import { PlaceContext } from '../../core/context/place/place.context';
 import { PlaceStructure } from '../../types/place';
-import { EditButton } from './edit.button';
+import { EditForm } from './editForm';
 import './item.scss';
 
 export function Item({ item }: { item: PlaceStructure }) {
     const { handleUpdate, handleDelete } = useContext(PlaceContext);
 
     const handleClick = () => {
-        handleDelete(item.name);
+        handleDelete(item.id);
     };
 
     const handleClickFav = () => {
+        item.isFavorite = !item.isFavorite;
         handleUpdate(item);
     };
 
     const [modalEdit, setModalEdit] = useState(false);
 
-    const openModalEdit = () => {
+    const toggleModalEdit = () => {
         setModalEdit(!modalEdit);
+        handleUpdate(item);
     };
 
     return (
@@ -67,31 +69,32 @@ export function Item({ item }: { item: PlaceStructure }) {
                         className="items_icons_bottom-edit"
                         src="./assets/item/edit_icon_12.webp"
                         alt="Icono edit"
-                        onClick={openModalEdit}
+                        onClick={toggleModalEdit}
                     />
                     {modalEdit ? (
-                        <EditButton
+                        <EditForm
                             item={item}
-                            openModalEdit={() => {
-                                setModalEdit(false);
+                            toggleModalEdit={() => {
+                                toggleModalEdit();
                             }}
                             modalEdit={modalEdit}
                         />
                     ) : null}
                     <button
-                        type="submit"
+                        type="button"
                         className="items_icons_bottom-fav"
                         onClick={handleClickFav}
+                        data-testid="bottom-fav"
                     >
                         {item.isFavorite ? (
                             <img
-                                src="./assets/item/favorite_icon_12.webp"
-                                alt="Icono favorito add"
+                                src="./assets/item/favoriteNOT_icon_12.webp"
+                                alt="Icono favorito remove"
                             />
                         ) : (
                             <img
-                                src="./assets/item/favoriteNOT_icon_12.webp"
-                                alt="Icono favorito remove"
+                                src="./assets/item/favorite_icon_12.webp"
+                                alt="Icono favorito add"
                             />
                         )}
                     </button>
@@ -100,6 +103,7 @@ export function Item({ item }: { item: PlaceStructure }) {
                         src="./assets/item/delete_icon_12.webp"
                         alt="Icono borrar"
                         onClick={handleClick}
+                        data-testid="bottom-delete"
                     />
                 </div>
             </div>

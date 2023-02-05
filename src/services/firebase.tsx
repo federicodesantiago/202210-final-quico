@@ -2,10 +2,8 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: 'AIzaSyDYCJpekl4sfHWcVbzljd2KHCrPESOyDm0',
-    //apiKey: process.env.REACT_APP_API_KEY,
-    // https://create-react-app.dev/docs/adding-custom-environment-variables/
     authDomain: 'stop-y-go.firebaseapp.com',
     projectId: 'stop-y-go',
     storageBucket: 'stop-y-go.appspot.com',

@@ -1,18 +1,20 @@
 import { createContext } from 'react';
-import { WeatherStructure } from '../../../types/weather';
+import { WeatherStructure } from '../../../types/weather.type';
 
-type WeatherContextStructure = {
+export type WeatherContextStructure = {
     weather: WeatherStructure;
     handleLoad: () => Promise<void>;
 };
 
 const weather = {
     weather: {
-        icon: ' ',
+        0: {
+            icon: ' ',
+        },
     },
     main: {
-        temp: ' ',
-        feels_like: ' ',
+        temp: 0,
+        feels_like: 0,
     },
     name: ' ',
 };

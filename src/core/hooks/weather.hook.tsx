@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useReducer } from 'react';
 import { WeatherRepo } from '../../services/repo/weatherRepo';
-import { WeatherStructure } from '../../types/weather';
+import { WeatherStructure } from '../../types/weather.type';
 import { weatherLoadCreator } from '../reducer/weather/actionCreators';
 import { weatherReducer } from '../reducer/weather/weatherReducer';
 
@@ -8,13 +8,15 @@ export function UseWeather() {
     const repo = useMemo(() => new WeatherRepo(), []);
     const initialState: WeatherStructure = {
         weather: {
-            icon: ' ',
+            0: {
+                icon: '',
+            },
         },
         main: {
-            temp: ' ',
-            feels_like: ' ',
+            temp: 0,
+            feels_like: 0,
         },
-        name: ' ',
+        name: '',
     };
 
     const [weather, dispatch] = useReducer(weatherReducer, initialState);
@@ -22,7 +24,6 @@ export function UseWeather() {
     const handleLoad = useCallback(async () => {
         const data = await repo.load();
         dispatch(weatherLoadCreator(data));
-        console.log('data:', data);
     }, [repo]);
 
     return {

@@ -2,8 +2,8 @@
 
 footer {
     position: absolute;
+    width: 100%;
     top: 63em;
-    left: 2.56em;
     font-size: 0.62em;
     font-family: $primary-font;
     color: $dark-color;
@@ -18,10 +18,10 @@ footer {
     }
     .menu_list {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         list-style-type: none;
-        gap: 13em;
+        gap: 5em;
         margin-block-end: 0.3em;
     }
     a {

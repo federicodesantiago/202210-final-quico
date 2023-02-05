@@ -2,26 +2,42 @@ import { SyntheticEvent, useContext, useState } from 'react';
 import { PlaceStructure } from '../../types/place';
 import { PlaceContext } from '../../core/context/place/place.context';
 
-export function EditButton({
+export function EditForm({
     item,
     modalEdit,
-    openModalEdit,
+    toggleModalEdit,
 }: {
-    modalEdit: boolean;
-    openModalEdit: () => void;
     item: PlaceStructure;
+    modalEdit: boolean;
+    toggleModalEdit: () => void;
 }) {
     const { handleUpdate } = useContext(PlaceContext);
 
-    const handleClick = () => {
-        handleUpdate(item);
+    const handleSubmit = () => {
+        handleUpdate(updateData);
+        toggleModalEdit();
     };
 
     const [updateData, setUpdateData] = useState(item);
 
     const handleInput = (event: SyntheticEvent) => {
         const element = event.target as HTMLFormElement;
-        setUpdateData({ ...updateData, [element.name]: element.value });
+        setUpdateData({ ...updateData, [element.id]: element.value });
+    };
+
+    const handleChangeKids = () => {
+        updateData.forKids = !updateData.forKids;
+        handleUpdate(updateData);
+    };
+
+    const handleChangeDogs = () => {
+        updateData.forDogs = !updateData.forDogs;
+        handleUpdate(updateData);
+    };
+
+    const handleChangeAway = () => {
+        updateData.away = !updateData.away;
+        handleUpdate(updateData);
     };
 
     return (
@@ -34,7 +50,7 @@ export function EditButton({
                     <form
                         className="edit-form"
                         autoComplete="off"
-                        onSubmit={handleClick}
+                        onSubmit={handleSubmit}
                     >
                         <div className="edit-content_input">
                             <input
@@ -52,6 +68,7 @@ export function EditButton({
                                 <select
                                     name="start"
                                     className="edit-form_start"
+                                    placeholder={item.start}
                                     onClick={handleInput}
                                     id="start"
                                 >
@@ -66,6 +83,7 @@ export function EditButton({
                                 <select
                                     name="finish"
                                     className="edit-form_finish"
+                                    placeholder={item.finish}
                                     onClick={handleInput}
                                     id="finish"
                                 >
@@ -94,6 +112,7 @@ export function EditButton({
                                     <input
                                         type="checkbox"
                                         checked={updateData.forKids}
+                                        onChange={handleChangeKids}
                                         value="forKids"
                                     />
                                     <label htmlFor="forKids">Niños</label>
@@ -102,6 +121,7 @@ export function EditButton({
                                     <input
                                         type="checkbox"
                                         checked={updateData.forDogs}
+                                        onChange={handleChangeDogs}
                                         value="forDogs"
                                     />
                                     <label htmlFor="forDogs">Perros</label>
@@ -110,6 +130,7 @@ export function EditButton({
                                     <input
                                         type="checkbox"
                                         checked={updateData.away}
+                                        onChange={handleChangeAway}
                                         value="away"
                                     />
                                     <label htmlFor="away">Desvío</label>
@@ -128,12 +149,6 @@ export function EditButton({
                             </div>
                             <div className="edit-content_send">
                                 <button type="submit">Actualizar</button>
-                                <button
-                                    onClick={openModalEdit}
-                                    className="edit-content_close"
-                                >
-                                    Terminar actualización
-                                </button>
                             </div>
                         </div>
                     </form>

@@ -9,12 +9,11 @@ export function List() {
     useEffect(() => {
         handleLoad();
     }, [handleLoad]);
-
     return (
         <>
             <div className="list">
                 {!places.length ? (
-                    <p>Loading ....</p>
+                    <p>Loading...</p>
                 ) : (
                     <ul className="place-list">
                         {places
@@ -28,7 +27,6 @@ export function List() {
                             .reverse()}
                     </ul>
                 )}
-                ;
             </div>
         </>
     );

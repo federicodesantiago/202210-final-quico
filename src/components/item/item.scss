@@ -63,6 +63,9 @@
             .items_icons_bottom-fav {
                 margin-inline-start: 0.5em;
             }
+            img {
+                border: none;
+            }
         }
     }
 }
@@ -74,8 +77,6 @@
     left: 50%;
     top: 43%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
     button {
         margin: 1em;

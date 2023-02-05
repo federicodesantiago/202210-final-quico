@@ -1,14 +1,16 @@
-import { WeatherStructure } from '../../../types/weather';
+import { WeatherStructure } from '../../../types/weather.type';
 import { weatherActionTypes } from './action.type';
 import { WeatherAction } from './actionCreators';
 
 const initialState: WeatherStructure = {
     weather: {
-        icon: ' ',
+        0: {
+            icon: ' ',
+        },
     },
     main: {
-        temp: ' ',
-        feels_like: ' ',
+        temp: 0,
+        feels_like: 0,
     },
     name: ' ',
 };

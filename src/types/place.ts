@@ -12,15 +12,8 @@ export type PlaceType = {
 };
 
 export class PlaceStructure implements PlaceType {
-    // static generateId() {
-    //     const aNumbers = new Uint32Array(1);
-    //     window.crypto?.getRandomValues(aNumbers);
-    //     return ('000000' + aNumbers[0]).slice(-6);
-    // }
-
-    // id: string;
     isFavorite: boolean;
-
+    id: string;
     constructor(
         public name: string,
         public start: string,
@@ -32,7 +25,11 @@ export class PlaceStructure implements PlaceType {
         public forDogs: boolean,
         public coment: string
     ) {
-        // this.id = PlaceStructure.generateId();
         this.isFavorite = false;
+        this.id = '';
     }
 }
+
+export type PlaceCollection = {
+    [key: string]: PlaceStructure;
+};
