@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useReducer, useState } from 'react';
-
 import * as ac from '../reducer/place/actionPlaceCreator';
 import { PlaceStructure } from '../../types/place';
 import { PlacesRepo } from '../../services/repo/placeRepo';
@@ -21,7 +20,6 @@ export function usePlaces(): UsePlaces {
 
     const initialState: Array<PlaceStructure> = [];
     const initialStatus = 'Starting' as Status;
-
     const [places, dispatch] = useReducer(placeReducer, initialState);
 
     const [status, setStatus] = useState(initialStatus);

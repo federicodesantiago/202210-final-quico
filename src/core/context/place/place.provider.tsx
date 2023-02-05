@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { usePlaces } from '../../hooks/place.hook';
-import { PlaceContext } from './place.context';
+import { useUser } from '../../hooks/user.hook';
+import { PlaceContext, UserContext } from './place.context';
 
 export function PlaceContextProvider({ children }: { children: JSX.Element }) {
     const { getPlaces, handleLoad, handleAdd, handleDelete, handleUpdate } =
@@ -21,5 +22,23 @@ export function PlaceContextProvider({ children }: { children: JSX.Element }) {
         <PlaceContext.Provider value={context}>
             {children}
         </PlaceContext.Provider>
+    );
+}
+
+export function UserContextProvider({ children }: { children: JSX.Element }) {
+    const { getUser, handleLogIn, handleLogOut } = useUser();
+
+    const context = useMemo(
+        () => ({
+            user: getUser(),
+            handleLogIn,
+            handleLogOut,
+        }),
+
+        [getUser, handleLogIn, handleLogOut]
+    );
+
+    return (
+        <UserContext.Provider value={context}>{children}</UserContext.Provider>
     );
 }

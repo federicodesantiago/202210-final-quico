@@ -9,12 +9,17 @@ export function Weather() {
         handleLoad();
     }, [handleLoad]);
 
+    const temp = weather.main.temp.toString();
+
     return (
         <>
             <div className="weather">
-                <img src="./assets/icono_weather.png" alt="" />
-                <p>{weather.name}</p>
-                <p className="temperature">{weather.main.temp}</p>
+                <img
+                    src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+                    alt="Weather icon"
+                />
+                <p id="wheatherLocation">{weather.name}</p>
+                <p className="temperature">{temp.slice(0, 1)}ºC</p>
             </div>
         </>
     );

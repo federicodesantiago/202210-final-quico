@@ -4,10 +4,10 @@ import { PlaceContext } from '../../../core/context/place/place.context';
 
 export function AddButton({
     modalAdd,
-    openModalAdd,
+    toggleModalAdd,
 }: {
     modalAdd: boolean;
-    openModalAdd: () => void;
+    toggleModalAdd: () => void;
 }) {
     const initialFormData: Partial<PlaceStructure> = {
         name: '',
@@ -21,11 +21,12 @@ export function AddButton({
         coment: '',
     };
 
-    const { handleAdd } = useContext(PlaceContext);
+    const { handleAdd, handleUpdate } = useContext(PlaceContext);
 
     const [formData, setFormData] = useState(initialFormData);
 
     const handleInput = (ev: SyntheticEvent) => {
+        ev.preventDefault();
         const element = ev.target as HTMLFormElement;
         setFormData({ ...formData, [element.name]: element.value });
     };
@@ -45,7 +46,23 @@ export function AddButton({
                 formData.coment as string
             )
         );
-        setFormData(initialFormData);
+        setFormData(formData);
+        toggleModalAdd();
+    };
+
+    const handleChangeKids = () => {
+        formData.forKids = !formData.forKids;
+        handleUpdate(formData);
+    };
+
+    const handleChangeDogs = () => {
+        formData.forDogs = !formData.forDogs;
+        handleUpdate(formData);
+    };
+
+    const handleChangeAway = () => {
+        formData.away = !formData.away;
+        handleUpdate(formData);
     };
 
     return (
@@ -116,24 +133,27 @@ export function AddButton({
                             <div className="checker-item">
                                 <input
                                     type="checkbox"
-                                    checked={formData.forKids}
                                     value="forKids"
+                                    onChange={handleChangeKids}
+                                    defaultChecked={formData.forKids}
                                 />
                                 <label htmlFor="forKids">Niños</label>
                             </div>
                             <div className="checker-item">
                                 <input
                                     type="checkbox"
-                                    checked={formData.forDogs}
                                     value="forDogs"
+                                    onChange={handleChangeDogs}
+                                    defaultChecked={formData.forDogs}
                                 />
                                 <label htmlFor="forDogs">Perros</label>
                             </div>
                             <div className="checker-item">
                                 <input
                                     type="checkbox"
-                                    checked={formData.away}
                                     value="away"
+                                    onChange={handleChangeAway}
+                                    defaultChecked={formData.away}
                                 />
                                 <label htmlFor="away">Desvío</label>
                             </div>
@@ -150,9 +170,7 @@ export function AddButton({
                             />
                         </div>
                         <div>
-                            <button onClick={openModalAdd} type="submit">
-                                Añadir
-                            </button>
+                            <button type="submit">Añadir</button>
                         </div>
                     </div>
                 </form>

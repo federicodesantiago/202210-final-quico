@@ -1,29 +1,46 @@
-import { SearchButton } from './search/searchButton';
+import { SearchForm } from './search/searchForm';
 import './buttons.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AddButton } from './add/add.button';
+import { UserContext } from '../../core/context/place/place.context';
+import { items } from '../../core/App/App';
 
 export function Buttons() {
+    const { user } = useContext(UserContext);
     const [modalSearch, setModalSearch] = useState(false);
 
-    const openModalSearch = () => {
+    const toggleModalSearch = () => {
         setModalSearch(!modalSearch);
     };
 
     const [modalAdd, setModalAdd] = useState(false);
 
-    const openModalAdd = () => {
+    const toggleModalAdd = () => {
         setModalAdd(!modalAdd);
     };
-
     return (
         <>
             <div className="buttons_group">
-                <button onClick={openModalAdd}>Añadir</button>
-                <button onClick={openModalSearch}>Buscador</button>
+                {user.uid ? (
+                    <>
+                        <button
+                            data-testid="add-button"
+                            onClick={toggleModalAdd}
+                        >
+                            Añadir
+                        </button>
+                        <button onClick={toggleModalSearch}>Buscador</button>
+                    </>
+                ) : (
+                    <button onClick={toggleModalSearch} id="BigSearchButton">
+                        Buscador
+                    </button>
+                )}
+
                 {modalSearch ? (
-                    <SearchButton
-                        openModalSearch={() => {
+                    <SearchForm
+                        items={items}
+                        toggleModalSearch={() => {
                             setModalSearch(false);
                         }}
                         modalSearch={modalSearch}
@@ -31,7 +48,7 @@ export function Buttons() {
                 ) : null}
                 {modalAdd ? (
                     <AddButton
-                        openModalAdd={() => {
+                        toggleModalAdd={() => {
                             setModalAdd(false);
                         }}
                         modalAdd={modalAdd}

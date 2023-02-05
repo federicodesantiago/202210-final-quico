@@ -16,11 +16,11 @@ export function placeReducer(
         case placeActionTypes.update:
             const updatePlace = action.payload as PlaceStructure;
             return state.map((item) =>
-                item.name === updatePlace.name ? updatePlace : item
+                item.id === updatePlace.id ? updatePlace : item
             );
         case placeActionTypes.delete:
-            const finalname = action.payload as PlaceStructure['name'];
-            return state.filter((item) => item.name !== finalname);
+            const finalID = action.payload as PlaceStructure['id'];
+            return state.filter((item) => item.id !== finalID);
         default:
             return [...state];
     }
