@@ -33,6 +33,7 @@ export function Menu({ items }: { items: MenuItems }) {
                         <a href=" " className="menu_list-login">
                             <li
                                 className="menu_list-loginText"
+                                role={'button'}
                                 onClick={handleIn}
                             >
                                 Log In
@@ -42,6 +43,7 @@ export function Menu({ items }: { items: MenuItems }) {
                     <a href=" " className="menu_list-logout">
                         <span className="menu_list-logoutLine"></span>
                         <li
+                            role={'button'}
                             className="menu_list-logoutText"
                             onClick={handleOut}
                         >

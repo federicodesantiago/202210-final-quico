@@ -1,5 +1,5 @@
 /* eslint-disable testing-library/no-unnecessary-act */
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { List } from './list';
 
 import {
@@ -50,7 +50,9 @@ describe('Given "List" component', () => {
         });
         test(`Then it should be render the loading`, async () => {
             const loadingText = screen.getByText(`Loading...`);
-            expect(loadingText).toBeInTheDocument();
+            await waitFor(() => {
+                expect(loadingText).toBeInTheDocument();
+            });
         });
     });
 });

@@ -7,7 +7,10 @@ import { AppLazyRoutes } from '../routes/routes';
 export const items: MenuItems = [
     { path: '/home', label: 'Home' },
     { path: '/favorites', label: 'Favoritos' },
-    { path: '/search', label: 'Buscar' },
+    {
+        path: '/search/:searchData.start',
+        label: 'Buscar',
+    },
 ];
 
 function App() {

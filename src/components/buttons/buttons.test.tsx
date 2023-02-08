@@ -9,8 +9,6 @@ import {
 import { userMock01 } from './button.mock';
 
 describe('Given Buttons component', () => {
-    const setModalAdd = jest.fn();
-    const setModalSearch = jest.fn();
     const handleLogIn = jest.fn();
     const handleLogOut = jest.fn();
     const context = {
@@ -19,8 +17,7 @@ describe('Given Buttons component', () => {
         handleLogOut,
     } as unknown as UsersContextStructure;
     let button: HTMLElement[];
-
-    beforeEach(() => {
+    beforeEach(async () => {
         render(
             <UserContext.Provider value={context}>
                 <Router>
@@ -33,12 +30,15 @@ describe('Given Buttons component', () => {
 
     describe('When data are provided in the component', () => {
         test('Then user could interact with add modal', () => {
-            userEvent.click(button[0]);
-            expect(setModalAdd).toHaveBeenCalled();
+            const modalActive = screen.getByTestId('add-button');
+            userEvent.click(modalActive);
+            const modalAddActive = screen.getAllByText('Añadir');
+            expect(modalAddActive[0]).toBeInTheDocument();
         });
         test('Then user could interact with search modal', () => {
-            userEvent.click(button[1]);
-            expect(setModalSearch).toHaveBeenCalled();
+            userEvent.click(button[0]);
+            const modalActive = screen.getAllByText('Buscar');
+            expect(modalActive[0]).toBeInTheDocument();
         });
     });
 });

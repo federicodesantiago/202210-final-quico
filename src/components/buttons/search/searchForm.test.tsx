@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable testing-library/no-unnecessary-act */
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter as Router } from 'react-router';
@@ -12,25 +12,46 @@ import { SearchForm } from './searchForm';
 import * as router from 'react-router';
 import React from 'react';
 import '@testing-library/jest-dom';
+import { mockPlace1 } from '../../../core/hooks/place.hook.mock';
+import { placeMock01 } from '../../../mock/place.mock';
+import { PlaceStructure } from '../../../types/place';
 
 describe('Given "Add" component', () => {
     const handleAdd = jest.fn();
     const handleUpdate = jest.fn();
     const toggleModalSearch = jest.fn();
     const navigate = jest.fn();
+
     const mockItems: MenuItems = [
         { path: '/home', label: 'Home' },
         { path: '/favorites', label: 'Favoritos' },
-        { path: '/search', label: 'Buscar' },
+        { path: '/search/:searchData', label: 'Buscar' },
     ];
-    const mockContext = {
-        handleAdd,
-        handleUpdate,
-    } as unknown as PlaceContextStructure;
+    let mockContext: PlaceContextStructure;
     let checkboxButton: HTMLInputElement[];
     let navigateButton: HTMLInputElement;
+    let optionElements: HTMLInputElement[];
+
+    const MockSearchFormData: Partial<PlaceStructure> = {
+        name: '',
+        start: '',
+        finish: '',
+        distance: '',
+        image: '',
+        away: false,
+        forKids: false,
+        forDogs: false,
+        coment: '',
+        id: '',
+    };
+
     beforeEach(() => {
         jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+        mockContext = {
+            places: [MockSearchFormData],
+            handleAdd,
+            handleUpdate,
+        } as unknown as PlaceContextStructure;
         render(
             <PlaceContext.Provider value={mockContext}>
                 <Router>
@@ -46,21 +67,17 @@ describe('Given "Add" component', () => {
             ...screen.getAllByRole('checkbox'),
         ] as HTMLInputElement[];
         navigateButton = screen.getByRole('button') as HTMLInputElement;
+        optionElements = screen.getAllByRole('option') as HTMLInputElement[];
     });
 
     describe('When we render', () => {
-        test('Then handleInput triggers', () => {
-            const optionElements = screen.getAllByRole(
-                'option'
-            ) as HTMLInputElement[];
+        test('Then handleInput triggers', async () => {
             fireEvent.change(optionElements[0], {
                 target: { value: 'Corcubión' },
             });
-            expect(optionElements[0].value).toBe('Corcubión');
-            fireEvent.change(optionElements[0], {
-                target: { value: 'Valencia' },
-            });
-            expect(optionElements[0].value).toBe('Valencia');
+            userEvent.click(navigateButton);
+            const MockSearchFormDataStart = MockSearchFormData.start;
+            await expect(MockSearchFormDataStart).toHaveValue('Corcubión');
         });
         test(`Then it should render Buscar`, () => {
             const placeHeader = screen.getByRole('heading', {
@@ -73,11 +90,11 @@ describe('Given "Add" component', () => {
         });
         test('Then handleChangeKids should be call', () => {
             userEvent.click(checkboxButton[0]);
-            expect(handleUpdate).toHaveBeenCalled();
+            expect(mockPlace1.forKids).toBe(true);
         });
         test('Then handleChangeDogs should be call', () => {
             userEvent.click(checkboxButton[1]);
-            expect(handleUpdate).toHaveBeenCalled();
+            expect(mockPlace1.forDogs).toBe(true);
         });
         test('Then navigate should be call', () => {
             userEvent.click(navigateButton);

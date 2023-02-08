@@ -1,13 +1,7 @@
 import { UserStructure } from '../../../types/user';
+import { initialState } from '../../hooks/user.hook.mock';
 import { userActionTypes } from './actionUser.type';
 import { UserAction } from './actionUserCreator';
-
-const initialState: UserStructure = {
-    name: '',
-    photoURL: '',
-    token: '',
-    uid: '',
-};
 
 export function userReducer(
     state = initialState,

@@ -13,6 +13,12 @@ export const mockUser2: UserStructure = {
     token: '',
     uid: '',
 };
+export const initialState: UserStructure = {
+    name: '',
+    photoURL: '',
+    token: '',
+    uid: '',
+};
 export const mockUsers = [mockUser1, mockUser2];
 export const mockInUser: UserStructure = {
     name: 'Name 3',
