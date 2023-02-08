@@ -34,19 +34,4 @@ export class WeatherRepo implements Repository<WeatherStructure> {
             throw new Error(`Error ${resp.status}: ${resp.statusText}`);
         return await resp.json();
     }
-
-    async create(
-        payload: Partial<WeatherStructure>
-    ): Promise<WeatherStructure> {
-        const resp = await fetch(this.url, {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        });
-        if (!resp.ok)
-            throw new Error(`Error ${resp.status}: ${resp.statusText}`);
-        return await resp.json();
-    }
 }

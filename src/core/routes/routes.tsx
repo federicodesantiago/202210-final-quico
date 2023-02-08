@@ -1,12 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import SearchPage from '../../pages/search/searchpage';
 import { MenuItems } from '../../types/menu';
 
 const HomePage = lazy(() => import('../../pages/home/homepage'));
 const FavoritesPage = lazy(
     () => import('../../pages/favorites/favoritespages')
 );
+const SearchPage = lazy(() => import('../../pages/search/searchpage'));
 
 export function AppLazyRoutes({ items }: { items: MenuItems }) {
     return (
@@ -21,10 +21,10 @@ export function AppLazyRoutes({ items }: { items: MenuItems }) {
                     path={items[1].path}
                     element={<FavoritesPage></FavoritesPage>}
                 ></Route>
-                {/* <Route
+                <Route
                     path={items[2].path}
                     element={<SearchPage items={items}></SearchPage>}
-                ></Route> */}
+                ></Route>
                 <Route
                     path={'*'}
                     element={<Navigate to="" replace></Navigate>}

@@ -13,7 +13,6 @@ export const mockWeather1: WeatherStructure = {
     },
     name: 'Moralzarzal',
 };
-
 export const mockValidRepoResponse = () => {
     (WeatherRepo.prototype.load as jest.Mock).mockResolvedValue(mockWeather1);
 };

@@ -9,7 +9,7 @@ export function UseWeather() {
     const initialState: WeatherStructure = {
         weather: {
             0: {
-                icon: '',
+                icon: '../../../public/assets/icono_weather.png',
             },
         },
         main: {

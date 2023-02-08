@@ -58,9 +58,9 @@ export function usePlaces(): UsePlaces {
         }
     };
 
-    const handleDelete = async function (name: PlaceStructure['name']) {
+    const handleDelete = async function (id: PlaceStructure['id']) {
         try {
-            const finalId = await repo.delete(name);
+            const finalId = await repo.delete(id);
             dispatch(ac.placeDeleteCreator(finalId));
         } catch (error) {
             handleError(error as Error);

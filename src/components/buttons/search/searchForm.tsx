@@ -1,6 +1,5 @@
-import { SyntheticEvent, useContext, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PlaceContext } from '../../../core/context/place/place.context';
 import { MenuItems } from '../../../types/menu';
 import { PlaceStructure } from '../../../types/place';
 
@@ -14,6 +13,7 @@ export const searchFormData: Partial<PlaceStructure> = {
     forKids: false,
     forDogs: false,
     coment: '',
+    id: '',
 };
 export function SearchForm({
     items,
@@ -24,18 +24,16 @@ export function SearchForm({
     modalSearch: boolean;
     toggleModalSearch: () => void;
 }) {
-    const { handleUpdate } = useContext(PlaceContext);
-
     const navigate = useNavigate();
 
     const handleChangeKids = () => {
         searchData.forKids = !searchData.forKids;
-        handleUpdate(searchData);
     };
 
-    const handleChangeDogs = () => {
+    const handleChangeDogs = (ev: SyntheticEvent) => {
         searchData.forDogs = !searchData.forDogs;
-        handleUpdate(searchData);
+        const element = ev.target as HTMLFormElement;
+        setSearchData({ ...searchData, [element.name]: element.value });
     };
 
     const [searchData, setSearchData] = useState(searchFormData);
@@ -50,13 +48,18 @@ export function SearchForm({
         toggleModalSearch();
         navigate(items[2].path);
     };
+
     return (
         <>
             <div className="black-bg"> </div>
             <div className="search_content">
                 <h3 className="search_content_header">Buscar</h3>
                 <span></span>
-                <form>
+                <form
+                    className="search-form"
+                    autoComplete="off"
+                    onSubmit={handleClick}
+                >
                     <div className="search_content-dropDown">
                         <select
                             name="start"
@@ -92,7 +95,6 @@ export function SearchForm({
                             <input
                                 type="checkbox"
                                 value="forKids"
-                                id="forKids"
                                 onChange={handleChangeKids}
                                 defaultChecked={searchData.forKids}
                             />
@@ -102,16 +104,13 @@ export function SearchForm({
                             <input
                                 type="checkbox"
                                 value="forDogs"
-                                id="forDogs"
                                 onChange={handleChangeDogs}
                                 defaultChecked={searchData.forDogs}
                             />
                             <label htmlFor="forDogs">Perros</label>
                         </div>
                     </div>
-                    <button onClick={handleClick} type="submit">
-                        {items[2].label}
-                    </button>
+                    <button type="submit">{items[2].label}</button>
                 </form>
             </div>
         </>

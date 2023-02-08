@@ -18,9 +18,9 @@ export const placeMock02 = new PlaceStructure(
     'Corcubión',
     '1:00h',
     'imagen2',
-    true,
     false,
-    true,
+    false,
+    false,
     'Nothing to coment'
 );
 
