@@ -7,6 +7,7 @@ const FavoritesPage = lazy(
     () => import('../../pages/favorites/favoritespages')
 );
 const SearchPage = lazy(() => import('../../pages/search/searchpage'));
+const ErrorPage404 = lazy(() => import('../../pages/error404/errorpage404'));
 
 export function AppLazyRoutes({ items }: { items: MenuItems }) {
     return (
@@ -23,7 +24,11 @@ export function AppLazyRoutes({ items }: { items: MenuItems }) {
                 ></Route>
                 <Route
                     path={items[2].path}
-                    element={<SearchPage items={items}></SearchPage>}
+                    element={<SearchPage></SearchPage>}
+                ></Route>
+                <Route
+                    path="/ErrorPage404"
+                    element={<ErrorPage404></ErrorPage404>}
                 ></Route>
                 <Route
                     path={'*'}

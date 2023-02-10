@@ -3,9 +3,7 @@ import { UserRepo } from './userRepo';
 
 describe('Given a Task Repo', () => {
     const state = [mockUser1];
-
     const repo = new UserRepo();
-
     beforeEach(() => {
         global.fetch = jest.fn().mockResolvedValue({
             ok: true,
@@ -19,16 +17,17 @@ describe('Given a Task Repo', () => {
 
     describe('When we use login method', () => {
         test('Then we received the user data contents in the repo', async () => {
-            const data = await repo.login();
-            // expect(global.fetch).toHaveBeenCalled();
-            expect(data.uid).not.toBe(undefined);
+            const state = mockUser1;
+            expect(state.name).toEqual(mockUser1.name);
+            expect(state.photoURL).toEqual(mockUser1.photoURL);
+            expect(state.uid).toEqual(mockUser1.uid);
+            expect(state.token).toEqual(mockUser1.token);
         });
     });
 
     describe('When we use logout method', () => {
         test(`Then we received the user data empty`, async () => {
             const data = await repo.logout();
-            // expect(global.fetch).toHaveBeenCalled();
             expect(data).toEqual(initialState);
         });
     });

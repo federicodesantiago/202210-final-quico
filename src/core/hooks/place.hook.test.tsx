@@ -11,6 +11,7 @@ import {
 
 import { PlacesRepo } from '../../services/repo/placeRepo';
 import { usePlaces } from './place.hook';
+import { MemoryRouter as Router } from 'react-router';
 
 jest.mock('../../services/repo/placeRepo');
 
@@ -58,7 +59,11 @@ describe(`Given usePlaces (custom hook)
                 </>
             );
         };
-        render(<TestComponent />);
+        render(
+            <Router>
+                <TestComponent />
+            </Router>
+        );
         buttons = screen.getAllByRole('button');
     });
     describe(`When the repo is working OK`, () => {

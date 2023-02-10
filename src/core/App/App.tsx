@@ -8,7 +8,7 @@ export const items: MenuItems = [
     { path: '/home', label: 'Home' },
     { path: '/favorites', label: 'Favoritos' },
     {
-        path: '/search/:searchData.start',
+        path: '/search/:start/:finish',
         label: 'Buscar',
     },
 ];

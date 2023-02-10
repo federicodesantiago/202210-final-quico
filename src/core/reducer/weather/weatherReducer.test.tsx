@@ -45,6 +45,7 @@ describe('Given the reducer', () => {
             action = { type: 'Bad', payload: initialState };
             const result = weatherReducer(state, action);
             expect(result).toEqual(state);
+            expect(initialState).toBeDefined();
         });
     });
 });

@@ -16,8 +16,3 @@ export const mockWeather1: WeatherStructure = {
 export const mockValidRepoResponse = () => {
     (WeatherRepo.prototype.load as jest.Mock).mockResolvedValue(mockWeather1);
 };
-
-const error = new Error('Testing errors');
-export const mockNoValidRepoResponse = () => {
-    (WeatherRepo.prototype.load as jest.Mock).mockRejectedValue(error);
-};
