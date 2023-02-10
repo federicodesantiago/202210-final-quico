@@ -11,7 +11,7 @@ describe('Given "ListSearch" component', () => {
     const handleLoad = jest.fn();
     let mockContext: PlaceContextStructure;
 
-    describe('When it has any coincidence', () => {
+    describe('When it has some coincidence', () => {
         beforeEach(async () => {
             mockContext = {
                 places: [placeMock01],
@@ -47,9 +47,7 @@ describe('Given "ListSearch" component', () => {
             });
         });
         test(`Then component should be render the following`, () => {
-            const message = screen.getByText(
-                'Lo sentimos, no hay ningún valor que se ajuste a su criterio.'
-            );
+            const message = screen.getByText('Lo sentimos.');
             expect(message).toBeInTheDocument();
         });
     });

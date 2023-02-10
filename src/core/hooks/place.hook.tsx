@@ -3,6 +3,7 @@ import * as ac from '../reducer/place/actionPlaceCreator';
 import { PlaceStructure } from '../../types/place';
 import { PlacesRepo } from '../../services/repo/placeRepo';
 import { placeReducer } from '../reducer/place/placesReducer';
+import ErrorPage404 from '../../pages/error404/errorpage404';
 
 export type UsePlaces = {
     getStatus: () => Status;
@@ -34,7 +35,7 @@ export function usePlaces(): UsePlaces {
             dispatch(ac.placeLoadCreator(data));
             setStatus('Loaded');
         } catch (error) {
-            handleError(error as Error);
+            <ErrorPage404></ErrorPage404>;
         }
     }, [repo]);
 
@@ -43,7 +44,7 @@ export function usePlaces(): UsePlaces {
             const fullPlace = await repo.create(place);
             dispatch(ac.placeAddCreator(fullPlace));
         } catch (error) {
-            handleError(error as Error);
+            <ErrorPage404></ErrorPage404>;
         }
     };
 
@@ -54,7 +55,7 @@ export function usePlaces(): UsePlaces {
             const fullPlace = await repo.update(placePayload);
             dispatch(ac.placeUpdateCreator(fullPlace));
         } catch (error) {
-            handleError(error as Error);
+            <ErrorPage404></ErrorPage404>;
         }
     };
 
@@ -63,12 +64,8 @@ export function usePlaces(): UsePlaces {
             const finalId = await repo.delete(id);
             dispatch(ac.placeDeleteCreator(finalId));
         } catch (error) {
-            handleError(error as Error);
+            <ErrorPage404></ErrorPage404>;
         }
-    };
-
-    const handleError = (error: Error) => {
-        console.log(error.message);
     };
 
     return {

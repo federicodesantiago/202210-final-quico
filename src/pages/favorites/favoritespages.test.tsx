@@ -57,18 +57,10 @@ describe('Given "Favorites" component', () => {
                     );
                     mockPlace1.isFavorite = true;
                     placesFav = [mockPlace1];
-                    console.log(
-                        'mockPlace1.isFavorite: ',
-                        mockPlace1.isFavorite
-                    );
-                    console.log('mockPlace1: ', mockPlace1);
                 });
             });
         });
         test(`Then it should be render the data if there is a favorite`, async () => {
-            // await waitFor(() => {
-            //     expect(usePlaces().handleLoad).toHaveBeenCalled();
-            // });
             const elementItem = await screen.findByText(/Name 1/i);
             expect(elementItem).toBeInTheDocument();
         });

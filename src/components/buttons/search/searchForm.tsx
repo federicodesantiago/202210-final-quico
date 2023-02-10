@@ -26,16 +26,6 @@ export function SearchForm({
 }) {
     const navigate = useNavigate();
 
-    const handleChangeKids = () => {
-        searchData.forKids = !searchData.forKids;
-    };
-
-    const handleChangeDogs = (ev: SyntheticEvent) => {
-        searchData.forDogs = !searchData.forDogs;
-        const element = ev.target as HTMLFormElement;
-        setSearchData({ ...searchData, [element.name]: element.value });
-    };
-
     const [searchData, setSearchData] = useState(searchFormData);
 
     const handleInput = (ev: SyntheticEvent) => {
@@ -46,7 +36,7 @@ export function SearchForm({
 
     const handleClick = () => {
         toggleModalSearch();
-        navigate(items[2].path);
+        navigate(`/search/${searchData.start}/${searchData.finish}`);
     };
 
     return (
@@ -89,26 +79,6 @@ export function SearchForm({
                             <option value="Madrid">Madrid</option>
                             <option value="Valencia">Valencia</option>
                         </select>
-                    </div>
-                    <div className="search_content-checker">
-                        <div className="checker-item">
-                            <input
-                                type="checkbox"
-                                value="forKids"
-                                onChange={handleChangeKids}
-                                defaultChecked={searchData.forKids}
-                            />
-                            <label htmlFor="forKids">Niños</label>
-                        </div>
-                        <div className="checker-item">
-                            <input
-                                type="checkbox"
-                                value="forDogs"
-                                onChange={handleChangeDogs}
-                                defaultChecked={searchData.forDogs}
-                            />
-                            <label htmlFor="forDogs">Perros</label>
-                        </div>
                     </div>
                     <button type="submit">{items[2].label}</button>
                 </form>

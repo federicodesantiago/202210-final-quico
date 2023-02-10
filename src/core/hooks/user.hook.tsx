@@ -3,6 +3,7 @@ import * as ac from '../reducer/user/actionUserCreator';
 import { UserStructure } from '../../types/user';
 import { userReducer } from '../reducer/user/userReducer';
 import { UserRepo } from '../../services/repo/userRepo';
+import ErrorPage404 from '../../pages/error404/errorpage404';
 
 export type UseUser = {
     getStatus: () => Status;
@@ -15,7 +16,6 @@ type Status = 'Starting' | 'Loading' | 'Loaded';
 
 export function useUser(): UseUser {
     const repo = useMemo(() => new UserRepo(), []);
-
     const initialState: UserStructure = {
         name: '',
         photoURL: '',
@@ -39,7 +39,7 @@ export function useUser(): UseUser {
             dispatch(ac.userLoginCreator(data));
             setStatus('Loaded');
         } catch (error) {
-            handleError(error as Error);
+            <ErrorPage404></ErrorPage404>;
         }
     }, [repo]);
 
@@ -48,13 +48,9 @@ export function useUser(): UseUser {
             const data = await repo.logout();
             dispatch(ac.userLogOutCreator(data));
         } catch (error) {
-            handleError(error as Error);
+            <ErrorPage404></ErrorPage404>;
         }
     }
-
-    const handleError = (error: Error) => {
-        console.log(error.message);
-    };
 
     return {
         getStatus,

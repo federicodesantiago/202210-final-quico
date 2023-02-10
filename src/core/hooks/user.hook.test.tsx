@@ -6,13 +6,14 @@ import {
     mockNoValidRepoResponse,
     mockValidRepoResponse,
 } from './user.hook.mock';
+import { MemoryRouter as Router } from 'react-router';
 
 jest.mock('../../services/repo/userRepo');
 
 UserRepo.prototype.login = jest.fn();
 UserRepo.prototype.logout = jest.fn();
 
-describe(`Given usePlaces (custom hook)
+describe(`Given useUser (custom hook)
             render with a virtual component`, () => {
     let TestComponent: () => JSX.Element;
     let buttons: Array<HTMLElement>;
@@ -26,7 +27,11 @@ describe(`Given usePlaces (custom hook)
                 </>
             );
         };
-        render(<TestComponent />);
+        render(
+            <Router>
+                <TestComponent />
+            </Router>
+        );
         buttons = screen.getAllByRole('button');
     });
     describe(`When the repo is working OK`, () => {

@@ -1,13 +1,14 @@
 import { useContext, useEffect } from 'react';
 import { PlaceContext } from '../../core/context/place/place.context';
 import { PlaceStructure } from '../../types/place';
+import { searchDataStructure } from '../../types/searchData.type';
 import { Item } from '../item/item';
 import './list.scss';
 
 export function ListSearch({
     searchData,
 }: {
-    searchData: Partial<PlaceStructure>;
+    searchData: searchDataStructure;
 }) {
     const { places, handleLoad } = useContext(PlaceContext);
 
@@ -15,30 +16,26 @@ export function ListSearch({
         handleLoad();
     }, [handleLoad]);
 
-    const searchStart = places.filter(
+    const searchStart: Array<PlaceStructure> = places.filter(
         (item) => item.start === searchData.start
     );
-    const searchFinish = searchStart.filter(
+    console.log('searchStart: ', searchStart);
+    const searchFinish: Array<PlaceStructure> = searchStart.filter(
         (item) => item.finish === searchData.finish
-    );
-    const searchKids = searchFinish.filter(
-        (item) => item.forKids === searchData.forKids
-    );
-    const searchDogs = searchKids.filter(
-        (item) => item.forDogs === searchData.forDogs
     );
 
     return (
         <>
             <div className="list">
-                {!searchDogs.length ? (
-                    <p>
-                        Lo sentimos, no hay ningún valor que se ajuste a su
-                        criterio.
-                    </p>
+                {!searchFinish.length ? (
+                    <>
+                        <p>Lo sentimos.</p>
+                        <p>No hay ningún valor</p>
+                        <p>que se ajuste a sucriterio.</p>
+                    </>
                 ) : (
                     <ul className="place-list">
-                        {searchDogs
+                        {searchFinish
                             .map((item) => {
                                 return (
                                     <li key={item.name}>
