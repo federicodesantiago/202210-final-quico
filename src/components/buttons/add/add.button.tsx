@@ -22,7 +22,6 @@ export function AddButton({
     };
 
     const { handleAdd, handleUpdate } = useContext(PlaceContext);
-
     const [formData, setFormData] = useState(initialFormData);
 
     const handleInput = (ev: SyntheticEvent) => {
@@ -46,6 +45,7 @@ export function AddButton({
                 formData.coment as string
             )
         );
+        handleUpdate(formData);
         setFormData(formData);
         toggleModalAdd();
     };

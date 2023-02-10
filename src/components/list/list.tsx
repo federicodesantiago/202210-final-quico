@@ -2,6 +2,7 @@
 import { ChildProcess } from 'child_process';
 import { useContext, useEffect, useState } from 'react';
 import { PlaceContext } from '../../core/context/place/place.context';
+import { usePlaces } from '../../core/hooks/place.hook';
 import { PlaceStructure } from '../../types/place';
 import { Item } from '../item/item';
 
@@ -10,7 +11,7 @@ import './list.scss';
 export function List() {
     const { places, handleLoad } = useContext(PlaceContext);
 
-    const initialState: Array<PlaceStructure> = places.slice(0, 3);
+    const initialState: Array<PlaceStructure> = places;
 
     useEffect(() => {
         handleLoad();
@@ -41,6 +42,7 @@ export function List() {
         setNextNumber(nextNumber + 3);
         const newArrayPlaces = places.slice(currentNumber, nextNumber);
         setCurrentList(newArrayPlaces);
+        console.log('newArrayPlaces: ', newArrayPlaces);
     };
 
     const handlePageLess = () => {
@@ -48,8 +50,11 @@ export function List() {
         setNextNumber(nextNumber - 3);
         const newArrayPlacesLess = places.slice(currentNumber, nextNumber);
         setCurrentList(newArrayPlacesLess);
+        console.log('newArrayPlacesLess: ', newArrayPlacesLess);
     };
 
+    console.log('current: ', currentNumber);
+    console.log('nextNumber: ', nextNumber);
     // console.log('places: ', places);
     // console.log('lenght: ', places.length);
 
