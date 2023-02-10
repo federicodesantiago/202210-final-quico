@@ -30,10 +30,9 @@ describe('Given Buttons component', () => {
 
     describe('When data are provided in the component', () => {
         test('Then user could interact with add modal', () => {
-            userMock01.uid = '001';
-            const modalActive = screen.getByTestId('add-button');
-            userEvent.click(modalActive);
-            const modalAddActive = screen.getAllByText('Añadir');
+            // const buttons = [...screen.getAllByRole('button')]
+            userEvent.click(button[0]);
+            const modalAddActive = screen.getAllByText('Buscar');
             expect(modalAddActive[0]).toBeInTheDocument();
         });
         test('Then user could interact with search modal', () => {

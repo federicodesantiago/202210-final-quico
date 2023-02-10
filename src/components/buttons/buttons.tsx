@@ -18,17 +18,13 @@ export function Buttons() {
     const toggleModalAdd = () => {
         setModalAdd(!modalAdd);
     };
+
     return (
         <>
             <div className="buttons_group">
                 {user.uid ? (
                     <>
-                        <button
-                            data-testid="add-button"
-                            onClick={toggleModalAdd}
-                        >
-                            Añadir
-                        </button>
+                        <button onClick={toggleModalAdd}>Añadir</button>
                         <button onClick={toggleModalSearch}>Buscador</button>
                     </>
                 ) : (

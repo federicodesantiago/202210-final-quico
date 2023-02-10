@@ -1,9 +1,12 @@
 import { initialState, mockUser1 } from '../../core/hooks/user.hook.mock';
 import { UserRepo } from './userRepo';
+import { signInWithPopup } from 'firebase/auth';
 
 describe('Given a Task Repo', () => {
     const state = [mockUser1];
     const repo = new UserRepo();
+    (signInWithPopup as jest.Mock).mockResolvedValue(mockUser1);
+
     beforeEach(() => {
         global.fetch = jest.fn().mockResolvedValue({
             ok: true,
