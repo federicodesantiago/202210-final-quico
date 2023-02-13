@@ -2,6 +2,10 @@
 @import '../../scss/mixin.scss';
 
 .item {
+    button {
+        border: none;
+        margin-inline-start: 0.25em;
+    }
     ul {
         margin: 0;
         padding: 0;
@@ -50,6 +54,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+
         .items_icons_top {
             margin-block-end: 1.5em;
             .items_icons_top-dog {
@@ -59,6 +64,7 @@
         .items_icons_bottom {
             .items_icons_bottom-delete {
                 margin-inline-start: 0.5em;
+                border: none;
             }
             .items_icons_bottom-fav {
                 margin-inline-start: 0.5em;

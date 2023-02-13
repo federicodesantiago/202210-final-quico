@@ -19,7 +19,7 @@ export function ListSearch({
     const searchStart: Array<PlaceStructure> = places.filter(
         (item) => item.start === searchData.start
     );
-    console.log('searchStart: ', searchStart);
+
     const searchFinish: Array<PlaceStructure> = searchStart.filter(
         (item) => item.finish === searchData.finish
     );

@@ -1,5 +1,6 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PlaceContext } from '../../../core/context/place/place.context';
 import { MenuItems } from '../../../types/menu';
 import { PlaceStructure } from '../../../types/place';
 
@@ -25,13 +26,14 @@ export function SearchForm({
     toggleModalSearch: () => void;
 }) {
     const navigate = useNavigate();
-
+    const { handleUpdate } = useContext(PlaceContext);
     const [searchData, setSearchData] = useState(searchFormData);
 
     const handleInput = (ev: SyntheticEvent) => {
         ev.preventDefault();
         const element = ev.target as HTMLFormElement;
         setSearchData({ ...searchData, [element.name]: element.value });
+        handleUpdate(searchData);
     };
 
     const handleClick = () => {

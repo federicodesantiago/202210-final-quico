@@ -13,7 +13,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { PlaceStructure } from '../../../types/place';
 
-describe('Given "Add" component', () => {
+describe('Given the "Search" component', () => {
     const handleAdd = jest.fn();
     const handleUpdate = jest.fn();
     const toggleModalSearch = jest.fn();
@@ -66,6 +66,7 @@ describe('Given "Add" component', () => {
             userEvent.click(navigateButton);
             const MockSearchFormDataStart = MockSearchFormData.start;
             await expect(MockSearchFormDataStart).toBe('Corcubión');
+            await expect(handleUpdate).toBeCalled();
         });
         test(`Then it should render Buscar`, () => {
             const placeHeader = screen.getByRole('heading', {

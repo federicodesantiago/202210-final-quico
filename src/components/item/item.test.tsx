@@ -6,18 +6,21 @@ import {
 } from '../../core/context/place/place.context';
 import { placeMock01 } from '../../mock/place.mock';
 import userEvent from '@testing-library/user-event';
+import { EditForm } from './editForm';
 
 describe('Given "Item" component', () => {
     const handleUpdate = jest.fn();
     const handleDelete = jest.fn();
+    const toggleModalEdit = jest.fn();
+    const modalEdit = true;
 
     const mockContext = {
         handleUpdate,
         handleDelete,
     } as unknown as PlaceContextStructure;
 
-    describe('When data are provided in the component', () => {
-        let buttons: HTMLInputElement[];
+    describe('When data is provided in the component', () => {
+        let buttons: HTMLElement[];
 
         beforeEach(() => {
             render(
@@ -25,11 +28,7 @@ describe('Given "Item" component', () => {
                     <Item item={placeMock01}></Item>
                 </PlaceContext.Provider>
             );
-            buttons = [
-                screen.getByAltText('Icono favorito add'),
-                screen.getByAltText('Icono borrar'),
-                screen.getByAltText('Icono edit'),
-            ] as HTMLInputElement[];
+            buttons = [...screen.getAllByRole('button')];
         });
         test('Then the following items are render', async () => {
             const elements = [
@@ -48,20 +47,50 @@ describe('Given "Item" component', () => {
             expect(elements[3]).toBeInTheDocument();
             expect(elements[4]).toHaveAttribute(
                 'src',
-                `./assets/item/kid_icon.webp`
+                `https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/kid_icon.webp?alt=media&token=d635085f-8870-4ca3-93c2-8113469b5365`
             );
             expect(elements[5]).toHaveAttribute(
                 'src',
-                `./assets/item/dog_icon.webp`
+                `https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/dog_icon.webp?alt=media&token=45335d71-6baa-4ca8-8ea9-d50fc4359e88`
             );
         });
-        test('Then the following buttons are clicked', () => {
+        test('Then edit button is clicked', () => {
             userEvent.click(buttons[0]);
             expect(handleUpdate).toHaveBeenCalled();
+        });
+        test('Then the favorite button is clicked', () => {
             userEvent.click(buttons[1]);
-            expect(handleDelete).toHaveBeenCalled();
-            userEvent.click(buttons[2]);
             expect(handleUpdate).toHaveBeenCalled();
+        });
+        test('Then the delete button is clicked', () => {
+            userEvent.click(buttons[2]);
+            expect(handleDelete).toHaveBeenCalled();
+        });
+        test('Then the edit button is clicked, the modal shows up', () => {
+            userEvent.click(buttons[0]);
+            const actualizarText = screen.getByText('Actualizar');
+            expect(actualizarText).toBeInTheDocument();
+        });
+        describe('When the modal is open', () => {
+            let buttonModal: HTMLElement[];
+            beforeEach(() => {
+                render(
+                    <PlaceContext.Provider value={mockContext}>
+                        <EditForm
+                            item={placeMock01}
+                            toggleModalEdit={() => {
+                                toggleModalEdit();
+                            }}
+                            modalEdit={modalEdit}
+                        ></EditForm>
+                    </PlaceContext.Provider>
+                );
+                buttonModal = [...screen.getAllByRole('button')];
+            });
+            test('Then the toggleModalEdit, should work', () => {
+                userEvent.click(buttonModal[3]);
+                expect(handleUpdate).toHaveBeenCalled();
+            });
         });
     });
 });

@@ -14,7 +14,7 @@ export function AddButton({
         start: '',
         finish: '',
         distance: '',
-        image: '',
+        image: 'https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/estacion01.webp?alt=media&token=309517a5-e0c3-4529-8d50-738866e7484e',
         away: false,
         forKids: false,
         forDogs: false,

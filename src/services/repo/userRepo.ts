@@ -24,6 +24,10 @@ export class UserRepo implements Repository<UserStructure> {
         this.state.photoURL = userCredentials.user.photoURL as string;
         this.state.uid = userCredentials.user.uid;
         this.state.token = await userCredentials.user.getIdToken();
+        const setStorageUser = (storeName: string, data: string): void => {
+            localStorage.setItem(storeName, JSON.stringify(data));
+        };
+        setStorageUser('userStore', this.state.uid);
         return this.state;
     }
 
@@ -33,6 +37,7 @@ export class UserRepo implements Repository<UserStructure> {
         this.state.photoURL = '';
         this.state.uid = '';
         this.state.token = '';
+        delete localStorage.userStore;
         return this.state;
     }
 }
