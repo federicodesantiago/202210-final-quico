@@ -37,7 +37,6 @@ export class UserRepo implements Repository<UserStructure> {
         this.state.uid = '';
         this.state.token = '';
         delete localStorage.userStore;
-        window.location.reload();
         return this.state;
     }
 }
