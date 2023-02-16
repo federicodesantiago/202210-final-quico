@@ -5,7 +5,7 @@ export class WeatherRepo implements Repository<WeatherStructure> {
     url: string;
     constructor() {
         this.url =
-            'http://api.openweathermap.org/data/2.5/weather?q=Moralzarzal,es&units=metric&APPID=aef84d8469219aa65d4be40902afd3ed';
+            'https://api.openweathermap.org/data/2.5/weather?q=Moralzarzal,es&units=metric&APPID=aef84d8469219aa65d4be40902afd3ed';
     }
     async load(): Promise<WeatherStructure> {
         const resp = await fetch(this.url);

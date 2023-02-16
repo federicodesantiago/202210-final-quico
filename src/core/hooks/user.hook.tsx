@@ -3,7 +3,6 @@ import * as ac from '../reducer/user/actionUserCreator';
 import { UserStructure } from '../../types/user';
 import { userReducer } from '../reducer/user/userReducer';
 import { UserRepo } from '../../services/repo/userRepo';
-import ErrorPage404 from '../../pages/error404/errorpage404';
 
 export type UseUser = {
     getStatus: () => Status;
@@ -38,18 +37,14 @@ export function useUser(): UseUser {
             const data = await repo.login();
             dispatch(ac.userLoginCreator(data));
             setStatus('Loaded');
-        } catch (error) {
-            <ErrorPage404></ErrorPage404>;
-        }
+        } catch (error) {}
     }, [repo]);
 
     async function handleLogOut(): Promise<void> {
         try {
             const data = await repo.logout();
             dispatch(ac.userLogOutCreator(data));
-        } catch (error) {
-            <ErrorPage404></ErrorPage404>;
-        }
+        } catch (error) {}
     }
 
     return {

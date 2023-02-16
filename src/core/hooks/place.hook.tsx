@@ -3,7 +3,6 @@ import * as ac from '../reducer/place/actionPlaceCreator';
 import { PlaceStructure } from '../../types/place';
 import { PlacesRepo } from '../../services/repo/placeRepo';
 import { placeReducer } from '../reducer/place/placesReducer';
-import ErrorPage404 from '../../pages/error404/errorpage404';
 
 export type UsePlaces = {
     getStatus: () => Status;
@@ -34,18 +33,14 @@ export function usePlaces(): UsePlaces {
             const data = await repo.load();
             dispatch(ac.placeLoadCreator(data));
             setStatus('Loaded');
-        } catch (error) {
-            <ErrorPage404></ErrorPage404>;
-        }
+        } catch (error) {}
     }, [repo]);
 
     const handleAdd = async function (place: PlaceStructure) {
         try {
             const fullPlace = await repo.create(place);
             dispatch(ac.placeAddCreator(fullPlace));
-        } catch (error) {
-            <ErrorPage404></ErrorPage404>;
-        }
+        } catch (error) {}
     };
 
     const handleUpdate = async function (
@@ -54,18 +49,14 @@ export function usePlaces(): UsePlaces {
         try {
             const fullPlace = await repo.update(placePayload);
             dispatch(ac.placeUpdateCreator(fullPlace));
-        } catch (error) {
-            <ErrorPage404></ErrorPage404>;
-        }
+        } catch (error) {}
     };
 
     const handleDelete = async function (id: PlaceStructure['id']) {
         try {
             const finalId = await repo.delete(id);
             dispatch(ac.placeDeleteCreator(finalId));
-        } catch (error) {
-            <ErrorPage404></ErrorPage404>;
-        }
+        } catch (error) {}
     };
 
     return {
