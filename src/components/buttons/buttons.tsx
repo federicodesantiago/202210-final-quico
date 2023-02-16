@@ -16,7 +16,6 @@ export function Buttons() {
     const toggleModalAdd = () => {
         setModalAdd(!modalAdd);
     };
-
     return (
         <>
             <div className="buttons_group">

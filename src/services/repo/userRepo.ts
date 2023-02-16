@@ -2,7 +2,6 @@ import { Repository } from '../../types/userRepo';
 import { UserStructure } from '../../types/user';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
-
 export class UserRepo implements Repository<UserStructure> {
     constructor(
         private url = 'https://stop-y-go-default-rtdb.europe-west1.firebasedatabase.app/places.json/'
@@ -19,6 +18,7 @@ export class UserRepo implements Repository<UserStructure> {
     async login(): Promise<UserStructure> {
         const provider = new GoogleAuthProvider();
         const userCredentials = await signInWithPopup(auth, provider);
+        console.log('c', userCredentials);
         this.state.name = userCredentials.user.displayName as string;
         this.state.photoURL = userCredentials.user.photoURL as string;
         this.state.uid = userCredentials.user.uid;
@@ -27,6 +27,8 @@ export class UserRepo implements Repository<UserStructure> {
             localStorage.setItem(storeName, JSON.stringify(data));
         };
         setStorageUser('userStore', this.state.uid);
+        console.log('userStore', this.state.uid);
+        window.location.reload();
         return this.state;
     }
 
@@ -37,6 +39,8 @@ export class UserRepo implements Repository<UserStructure> {
         this.state.uid = '';
         this.state.token = '';
         delete localStorage.userStore;
+        console.log('out this state: ', this.state);
+        window.location.reload();
         return this.state;
     }
 }
