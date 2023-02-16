@@ -7,11 +7,10 @@ export function weatherReducer(
     state = weatherMock01,
     action: WeatherAction
 ): WeatherStructure {
-    switch (action.type) {
-        case weatherActionTypes.load:
-            const loadedWeather = action.payload as WeatherStructure;
-            return loadedWeather;
-        default:
-            return state;
+    if (action.type === weatherActionTypes.load) {
+        const loadedWeather = action.payload as WeatherStructure;
+        return loadedWeather;
+    } else {
+        return state;
     }
 }

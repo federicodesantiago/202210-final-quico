@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable testing-library/no-unnecessary-act */
-import { act, render, screen, waitFor } from '@testing-library/react';
-import { usePlaces } from '../../core/hooks/place.hook';
+import { act, render, screen } from '@testing-library/react';
 import { mockPlace1 } from '../../core/hooks/place.hook.mock';
 import {
     PlaceContext,
@@ -56,7 +55,6 @@ describe('Given "Favorites" component', () => {
                         </PlaceContext.Provider>
                     );
                     mockPlace1.isFavorite = true;
-                    placesFav = [mockPlace1];
                 });
             });
         });

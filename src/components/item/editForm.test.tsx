@@ -34,10 +34,6 @@ describe('Given "Add" component', () => {
     describe('When we render', () => {
         const mockName = 'Estación01';
         const mockDistancia = 'Distancia';
-        let elementButton: HTMLElement;
-        beforeEach(() => {
-            elementButton = screen.getByRole('button');
-        });
         test(`Then it should render Editar`, () => {
             const placeHeader = screen.getByRole('heading', {
                 name: 'Editar',

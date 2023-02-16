@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import HomePage from './homepage';
-// jest.mock('../../components/menu/menu');
 
 describe('Given the HomePage component', () => {
     describe('When it has been render', () => {

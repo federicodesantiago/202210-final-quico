@@ -1,12 +1,10 @@
 import { SearchForm } from './search/searchForm';
 import './buttons.scss';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { AddButton } from './add/add.button';
-import { UserContext } from '../../core/context/place/place.context';
 import { items } from '../../core/App/App';
 
 export function Buttons() {
-    const { user } = useContext(UserContext);
     const [modalSearch, setModalSearch] = useState(false);
 
     const toggleModalSearch = () => {

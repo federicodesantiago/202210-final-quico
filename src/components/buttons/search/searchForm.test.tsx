@@ -61,15 +61,15 @@ describe('Given the "Search" component', () => {
     });
 
     describe('When we render', () => {
-        test('Then handleInput triggers', async () => {
+        test('Then handleInput triggers', () => {
             fireEvent.change(optionElements[2], {
                 target: { value: 'Granada' },
             });
-            await expect(optionElements[2].value).toBe('Granada');
+            expect(optionElements[2].value).toBe('Granada');
             fireEvent.change(optionElements[1], {
                 target: { value: 'Corcubión' },
             });
-            await expect(optionElements[1].value).toBe('Corcubión');
+            expect(optionElements[1].value).toBe('Corcubión');
         });
         test(`Then it should render Buscar`, () => {
             const placeHeader = screen.getByRole('heading', {

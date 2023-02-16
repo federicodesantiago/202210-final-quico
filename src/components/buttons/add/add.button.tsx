@@ -47,7 +47,7 @@ export function AddButton({
         );
 
         handleUpdate(formData);
-        setFormData(formData);
+        setFormData(initialFormData);
         toggleModalAdd();
     };
 
