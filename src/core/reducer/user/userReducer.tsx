@@ -9,7 +9,7 @@ export function userReducer(
 ): UserStructure {
     switch (action.type) {
         case userActionTypes.login:
-            const loginUser = action.payload as UserStructure;
+            const loginUser = action.payload;
             return loginUser;
         case userActionTypes.logout:
             const logoutUser = initialState;

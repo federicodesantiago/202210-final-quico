@@ -36,11 +36,11 @@ describe('Given "Menu" component', () => {
             );
             buttons = [...screen.getAllByRole('button')] as HTMLInputElement[];
         });
-        test('Then the following buttons are clicked', async () => {
+        test('Then the following buttons are clicked', () => {
             userEvent.click(buttons[0]);
-            await expect(handleLogIn).toHaveBeenCalled();
+            expect(handleLogIn).toHaveBeenCalled();
             userEvent.click(buttons[1]);
-            await expect(handleLogOut).toHaveBeenCalled();
+            expect(handleLogOut).toHaveBeenCalled();
         });
     });
 });
