@@ -16,7 +16,6 @@ export class UserRepo implements Repository<UserStructure> {
         name: '',
         token: '',
     };
-
     async login(): Promise<UserStructure> {
         const provider = new GoogleAuthProvider();
         const userCredentials = await signInWithPopup(auth, provider);
@@ -28,6 +27,7 @@ export class UserRepo implements Repository<UserStructure> {
             localStorage.setItem(storeName, JSON.stringify(data));
         };
         setStorageUser('userStore', this.state.uid);
+        window.location.reload();
         return this.state;
     }
 
@@ -38,6 +38,7 @@ export class UserRepo implements Repository<UserStructure> {
         this.state.uid = '';
         this.state.token = '';
         delete localStorage.userStore;
+        window.location.reload();
         return this.state;
     }
 }

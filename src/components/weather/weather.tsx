@@ -19,7 +19,7 @@ export function Weather() {
                     alt="Weather icon"
                 />
                 <p id="wheatherLocation">{weather.name}</p>
-                <p className="temperature">{temp.slice(0, 1)}ºC</p>
+                <p className="temperature">{temp.slice(0, 2)}ºC</p>
             </div>
         </>
     );
