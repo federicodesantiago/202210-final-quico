@@ -56,8 +56,8 @@ describe('Given the "Search" component', () => {
                 </Router>
             </PlaceContext.Provider>
         );
-        navigateButton = screen.getByRole('button') as HTMLInputElement;
-        optionElements = screen.getAllByRole('option') as HTMLInputElement[];
+        navigateButton = screen.getByRole('button');
+        optionElements = screen.getAllByRole('option');
     });
 
     describe('When we render', () => {

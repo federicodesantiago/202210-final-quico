@@ -8,7 +8,7 @@ export function weatherReducer(
     action: WeatherAction
 ): WeatherStructure {
     if (action.type === weatherActionTypes.load) {
-        const loadedWeather = action.payload as WeatherStructure;
+        const loadedWeather = action.payload;
         return loadedWeather;
     } else {
         return state;

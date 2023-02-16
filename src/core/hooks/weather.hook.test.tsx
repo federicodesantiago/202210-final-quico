@@ -13,7 +13,7 @@ describe(`Given usePlaces (custom hook)
             render with a virtual component`, () => {
     let TestComponent: () => JSX.Element;
     let button: HTMLElement;
-    beforeEach(async () => {
+    beforeEach(() => {
         TestComponent = () => {
             const { handleLoad } = UseWeather();
             return (
@@ -22,7 +22,7 @@ describe(`Given usePlaces (custom hook)
                 </>
             );
         };
-        await render(<TestComponent />);
+        render(<TestComponent />);
         button = screen.getByRole('button');
     });
     describe(`When the repo is working OK`, () => {
