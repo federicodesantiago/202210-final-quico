@@ -28,7 +28,7 @@ export function Item({ item }: { item: PlaceStructure }) {
             <div className="item_img">
                 <img
                     className="item_img-item"
-                    src="./assets/item/estacion01.webp"
+                    src="https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/estacion01.webp?alt=media&token=309517a5-e0c3-4529-8d50-738866e7484e"
                     alt="Estación de servicio"
                 />
             </div>
@@ -64,13 +64,17 @@ export function Item({ item }: { item: PlaceStructure }) {
                         <span></span>
                     )}
                 </div>
-                <div className="items_icons_bottom">
-                    <img
+                <div className="items_icons_bottom-edit">
+                    <button
+                        type="button"
                         className="items_icons_bottom-edit"
-                        src="https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/edit_icon_12.webp?alt=media&token=bcb0bfbf-0403-48e5-a062-a3d65fbfb6ad"
-                        alt="Icono edit"
                         onClick={toggleModalEdit}
-                    />
+                    >
+                        <img
+                            src="https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/edit_icon_12.webp?alt=media&token=bcb0bfbf-0403-48e5-a062-a3d65fbfb6ad"
+                            alt="Icono edit"
+                        />
+                    </button>
                     {modalEdit ? (
                         <EditForm
                             item={item}
@@ -84,7 +88,6 @@ export function Item({ item }: { item: PlaceStructure }) {
                         type="button"
                         className="items_icons_bottom-fav"
                         onClick={handleClickFav}
-                        data-testid="bottom-fav"
                     >
                         {item.isFavorite ? (
                             <img
@@ -98,13 +101,16 @@ export function Item({ item }: { item: PlaceStructure }) {
                             />
                         )}
                     </button>
-                    <img
+                    <button
+                        type="button"
                         className="items_icons_bottom-delete"
-                        src="https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/delete_icon_12.webp?alt=media&token=f99c0066-2830-4968-9657-d2b474f175c2"
-                        alt="Icono borrar"
                         onClick={handleClickDelete}
-                        data-testid="bottom-delete"
-                    />
+                    >
+                        <img
+                            src="https://firebasestorage.googleapis.com/v0/b/stop-y-go.appspot.com/o/delete_icon_12.webp?alt=media&token=f99c0066-2830-4968-9657-d2b474f175c2"
+                            alt="Icono borrar"
+                        />
+                    </button>
                 </div>
             </div>
         </section>

@@ -17,7 +17,7 @@ describe(`Given useUser (custom hook)
             render with a virtual component`, () => {
     let TestComponent: () => JSX.Element;
     let buttons: Array<HTMLElement>;
-    beforeEach(() => {
+    beforeEach(async () => {
         TestComponent = () => {
             const { handleLogIn, handleLogOut } = useUser();
             return (

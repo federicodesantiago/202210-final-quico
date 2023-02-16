@@ -14,7 +14,7 @@ export default function FavoritesPage() {
 
     return (
         <>
-            <div className="list">
+            <div className="favlist">
                 {!placesFav.length ? (
                     <p>Ahora mismo no hay favoritos</p>
                 ) : (

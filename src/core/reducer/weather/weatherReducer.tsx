@@ -3,18 +3,6 @@ import { WeatherStructure } from '../../../types/weather.type';
 import { weatherActionTypes } from './action.type';
 import { WeatherAction } from './actionCreators';
 
-// const initialState: WeatherStructure = {
-//     weather: {
-//         0: {
-//             icon: ' ',
-//         },
-//     },
-//     main: {
-//         temp: 0,
-//         feels_like: 0,
-//     },
-//     name: ' ',
-// };
 export function weatherReducer(
     state = weatherMock01,
     action: WeatherAction

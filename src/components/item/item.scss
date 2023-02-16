@@ -2,6 +2,11 @@
 @import '../../scss/mixin.scss';
 
 .item {
+    margin-top: 1em;
+    button {
+        border: none;
+        margin-inline-start: 0.25em;
+    }
     ul {
         margin: 0;
         padding: 0;
@@ -18,7 +23,8 @@
     margin-block-end: 1em;
     .item_img {
         img {
-            width: 4.81em;
+            width: 5em;
+            height: 4.81em;
             border: 2px solid $grey-color;
             border-radius: 0.62em;
         }
@@ -50,19 +56,32 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+
         .items_icons_top {
             margin-block-end: 1.5em;
             .items_icons_top-dog {
+                width: 28px;
+                height: 28px;
+                margin-inline-start: 0.5em;
+            }
+            .items_icons_top-kid {
+                width: 28px;
+                height: 28px;
                 margin-inline-start: 0.5em;
             }
         }
         .items_icons_bottom {
             .items_icons_bottom-delete {
                 margin-inline-start: 0.5em;
+                border: none;
+                height: 12px;
+                width: 12px;
             }
             .items_icons_bottom-fav {
                 margin-inline-start: 0.5em;
                 border: none;
+                height: 12px;
+                width: 12px;
             }
             img {
                 border: none;

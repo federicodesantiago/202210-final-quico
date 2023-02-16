@@ -22,7 +22,7 @@ export function Buttons() {
     return (
         <>
             <div className="buttons_group">
-                {user.uid ? (
+                {localStorage.userStore ? (
                     <>
                         <button onClick={toggleModalAdd}>Añadir</button>
                         <button onClick={toggleModalSearch}>Buscador</button>
