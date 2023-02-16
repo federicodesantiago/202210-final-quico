@@ -27,7 +27,6 @@ export class UserRepo implements Repository<UserStructure> {
             localStorage.setItem(storeName, JSON.stringify(data));
         };
         setStorageUser('userStore', this.state.uid);
-        window.location.reload();
         return this.state;
     }
 
