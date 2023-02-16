@@ -37,13 +37,17 @@ export function useUser(): UseUser {
             const data = await repo.login();
             dispatch(ac.userLoginCreator(data));
             setStatus('Loaded');
-        } catch (error) {}
+            console.log('loginhook');
+        } catch (error) {
+            console.log('error login');
+        }
     }, [repo]);
 
     async function handleLogOut(): Promise<void> {
         try {
             const data = await repo.logout();
             dispatch(ac.userLogOutCreator(data));
+            console.log('logouthook');
         } catch (error) {}
     }
 
