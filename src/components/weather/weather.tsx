@@ -15,7 +15,7 @@ export function Weather() {
         <>
             <div className="weather">
                 <img
-                    src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+                    src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
                     alt="Weather icon"
                 />
                 <p id="wheatherLocation">{weather.name}</p>
