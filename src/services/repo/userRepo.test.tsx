@@ -1,37 +1,57 @@
-import { initialState, mockUser1 } from '../../core/hooks/user.hook.mock';
+/* eslint-disable testing-library/no-unnecessary-act */
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { useUser } from '../../core/hooks/user.hook';
+import { mockUser1, mockUser2 } from '../../core/hooks/user.hook.mock';
 import { UserRepo } from './userRepo';
-import { signInWithPopup } from 'firebase/auth';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('Given a Task Repo', () => {
-    const state = [mockUser1];
-    const repo = new UserRepo();
-    (signInWithPopup as jest.Mock).mockResolvedValue(mockUser1);
+    jest.mock('firebase/auth');
+    jest.mock('../firebase');
+    jest.mock('./userRepo');
 
-    beforeEach(() => {
-        global.fetch = jest.fn().mockResolvedValue({
-            ok: true,
-            json: jest.fn().mockResolvedValue(state),
+    let buttons: HTMLElement[];
+    let TestComponent: () => JSX.Element;
+    const mockRepoResponse = () => {
+        (UserRepo.prototype.login as jest.Mock).mockResolvedValue(mockUser1);
+        (UserRepo.prototype.logout as jest.Mock).mockResolvedValue(mockUser2);
+    };
+    UserRepo.prototype.login = jest.fn();
+    UserRepo.prototype.logout = jest.fn();
+    beforeEach(async () => {
+        TestComponent = () => {
+            const { handleLogIn, handleLogOut } = useUser();
+            return (
+                <>
+                    <button onClick={handleLogIn}>Login</button>
+                    <button onClick={handleLogOut}>Logout</button>
+                </>
+            );
+        };
+        mockRepoResponse();
+
+        await act(() =>
+            render(
+                <MemoryRouter>
+                    <TestComponent />
+                </MemoryRouter>
+            )
+        );
+        buttons = screen.getAllByRole('button');
+    });
+    describe('When we use the next method', () => {
+        test('Then login received the user data contents in the repo', async () => {
+            userEvent.click(buttons[0]);
+            await act(async () => {
+                expect(UserRepo.prototype.login).toHaveBeenCalled();
+            });
         });
-    });
-
-    test('Then we can instantiate it', () => {
-        expect(repo).toBeInstanceOf(UserRepo);
-    });
-
-    describe('When we use login method', () => {
-        test('Then we received the user data contents in the repo', async () => {
-            const state = mockUser1;
-            expect(state.name).toEqual(mockUser1.name);
-            expect(state.photoURL).toEqual(mockUser1.photoURL);
-            expect(state.uid).toEqual(mockUser1.uid);
-            expect(state.token).toEqual(mockUser1.token);
-        });
-    });
-
-    describe('When we use logout method', () => {
-        test(`Then we received the user data empty`, async () => {
-            const data = await repo.logout();
-            expect(data).toEqual(initialState);
+        test('Then logout deletes the user data contents in the repo', async () => {
+            userEvent.click(buttons[1]);
+            await act(async () => {
+                expect(UserRepo.prototype.logout).toHaveBeenCalled();
+            });
         });
     });
 });

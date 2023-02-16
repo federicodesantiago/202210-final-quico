@@ -45,6 +45,7 @@ export function AddButton({
                 formData.coment as string
             )
         );
+
         handleUpdate(formData);
         setFormData(formData);
         toggleModalAdd();

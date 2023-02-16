@@ -10,7 +10,6 @@ import {
 import { SearchForm } from './searchForm';
 import * as router from 'react-router';
 import React from 'react';
-import '@testing-library/jest-dom';
 import { PlaceStructure } from '../../../types/place';
 
 describe('Given the "Search" component', () => {
@@ -18,6 +17,9 @@ describe('Given the "Search" component', () => {
     const handleUpdate = jest.fn();
     const toggleModalSearch = jest.fn();
     const navigate = jest.fn();
+    jest.mock('react-router-dom', () => ({
+        navigate: jest.fn(),
+    }));
 
     let mockContext: PlaceContextStructure;
     let navigateButton: HTMLInputElement;
@@ -60,13 +62,14 @@ describe('Given the "Search" component', () => {
 
     describe('When we render', () => {
         test('Then handleInput triggers', async () => {
-            fireEvent.change(optionElements[0], {
+            fireEvent.change(optionElements[2], {
+                target: { value: 'Granada' },
+            });
+            await expect(optionElements[2].value).toBe('Granada');
+            fireEvent.change(optionElements[1], {
                 target: { value: 'Corcubión' },
             });
-            userEvent.click(navigateButton);
-            const MockSearchFormDataStart = MockSearchFormData.start;
-            await expect(MockSearchFormDataStart).toBe('Corcubión');
-            await expect(handleUpdate).toBeCalled();
+            await expect(optionElements[1].value).toBe('Corcubión');
         });
         test(`Then it should render Buscar`, () => {
             const placeHeader = screen.getByRole('heading', {

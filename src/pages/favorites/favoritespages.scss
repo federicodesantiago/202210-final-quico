@@ -1,5 +1,13 @@
 @import '../../components/list/list.scss';
 
-.place-list {
-    margin-block-start: 10em;
+.favlist {
+    margin: 10%;
+    ul {
+        .favplace-list {
+            margin-top: 10em;
+            section {
+                margin-top: 1em;
+            }
+        }
+    }
 }

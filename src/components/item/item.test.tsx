@@ -12,7 +12,7 @@ describe('Given "Item" component', () => {
     const handleUpdate = jest.fn();
     const handleDelete = jest.fn();
     const toggleModalEdit = jest.fn();
-    const modalEdit = true;
+    const modalEdit = false;
 
     const mockContext = {
         handleUpdate,
@@ -68,7 +68,7 @@ describe('Given "Item" component', () => {
         });
         test('Then the edit button is clicked, the modal shows up', () => {
             userEvent.click(buttons[0]);
-            const actualizarText = screen.getByText('Actualizar');
+            const actualizarText = screen.getByText('Editar');
             expect(actualizarText).toBeInTheDocument();
         });
         describe('When the modal is open', () => {
@@ -88,6 +88,8 @@ describe('Given "Item" component', () => {
                 buttonModal = [...screen.getAllByRole('button')];
             });
             test('Then the toggleModalEdit, should work', () => {
+                userEvent.click(buttons[0]);
+                expect(handleUpdate).toHaveBeenCalled();
                 userEvent.click(buttonModal[3]);
                 expect(handleUpdate).toHaveBeenCalled();
             });

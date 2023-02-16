@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
-// Your web app's Firebase configuration
 export const firebaseConfig = {
     apiKey: 'AIzaSyDYCJpekl4sfHWcVbzljd2KHCrPESOyDm0',
     authDomain: 'stop-y-go.firebaseapp.com',
@@ -11,6 +10,5 @@ export const firebaseConfig = {
     appId: '1:1029358742606:web:16259a867f2e053480271f',
 };
 
-// Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);

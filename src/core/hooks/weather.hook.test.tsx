@@ -34,13 +34,4 @@ describe(`Given usePlaces (custom hook)
             });
         });
     });
-    // describe(`When the repo is NOT working OK`, () => {
-    //     beforeEach(mockNoValidRepoResponse);
-    //     test('Then the error from the function load should be call', async () => {
-    //         userEvent.click(button);
-    //         await waitFor(() => {
-    //             expect(WeatherRepo.prototype.load).toHaveBeenCalled();
-    //         });
-    //     });
-    // });
 });
