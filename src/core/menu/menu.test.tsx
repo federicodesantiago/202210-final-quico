@@ -41,6 +41,7 @@ describe('Given "Menu" component', () => {
             expect(handleLogIn).toHaveBeenCalled();
             userEvent.click(buttons[1]);
             expect(handleLogOut).toHaveBeenCalled();
+            userEvent.click(buttons[1]);
         });
     });
 });

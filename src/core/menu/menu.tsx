@@ -7,12 +7,10 @@ export function Menu({ items }: { items: MenuItems }) {
     const { handleLogIn, handleLogOut } = useContext(UserContext);
 
     const handleIn = (ev: SyntheticEvent) => {
-        ev.preventDefault();
         handleLogIn();
     };
 
     const handleOut = (ev: SyntheticEvent) => {
-        ev.preventDefault();
         handleLogOut();
     };
 
