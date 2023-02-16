@@ -5,24 +5,29 @@ import {
     PlaceContext,
     PlaceContextStructure,
 } from '../../../core/context/place/place.context';
+import { MemoryRouter as Router } from 'react-router';
 
 describe('Given "Add" component', () => {
     const handleAdd = jest.fn();
     const handleUpdate = jest.fn();
+    const handleLoad = jest.fn();
     const toggleModalAdd = jest.fn();
 
     const mockContext = {
         handleAdd,
         handleUpdate,
+        handleLoad,
     } as unknown as PlaceContextStructure;
     let checkboxButton: HTMLInputElement[];
     beforeEach(() => {
         render(
             <PlaceContext.Provider value={mockContext}>
-                <AddButton
-                    modalAdd={false}
-                    toggleModalAdd={toggleModalAdd}
-                ></AddButton>
+                <Router>
+                    <AddButton
+                        modalAdd={false}
+                        toggleModalAdd={toggleModalAdd}
+                    ></AddButton>
+                </Router>
             </PlaceContext.Provider>
         );
         checkboxButton = [
