@@ -1,6 +1,8 @@
 import { SyntheticEvent, useContext, useState } from 'react';
 import { PlaceStructure } from '../../../types/place';
 import { PlaceContext } from '../../../core/context/place/place.context';
+import { useNavigate } from 'react-router-dom';
+import { items } from '../../../core/App/App';
 
 export function AddButton({
     modalAdd,
@@ -21,7 +23,7 @@ export function AddButton({
         coment: '',
     };
 
-    const { handleAdd, handleUpdate } = useContext(PlaceContext);
+    const { handleAdd, handleUpdate, handleLoad } = useContext(PlaceContext);
     const [formData, setFormData] = useState(initialFormData);
 
     const handleInput = (ev: SyntheticEvent) => {
@@ -29,7 +31,7 @@ export function AddButton({
         const element = ev.target as HTMLFormElement;
         setFormData({ ...formData, [element.name]: element.value });
     };
-
+    const navigate = useNavigate();
     const handleSubmit = (ev: SyntheticEvent) => {
         ev.preventDefault();
         handleAdd(
@@ -45,10 +47,11 @@ export function AddButton({
                 formData.coment as string
             )
         );
-
-        handleUpdate(formData);
         setFormData(initialFormData);
         toggleModalAdd();
+        handleLoad();
+        window.location.reload();
+        navigate(items[0].path);
     };
 
     const handleChangeKids = () => {
